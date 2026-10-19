@@ -31,6 +31,7 @@ IC = {
  "calendar": svg('<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'),
  "helmet": svg('<path d="M4 16a8 8 0 0 1 16 0M2 16h20v2H2zM12 4v5"/>'),
  "handshake": svg('<path d="m3 12 4-4 4 2 4-2 6 6-6 5-4-1-3 2-5-4z"/>'),
+ "chat": svg('<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>'),
  "doc": svg('<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>'),
  "menu": svg('<path d="M4 7h16M4 12h16M4 17h16"/>'),
  "arrow": svg('<path d="M5 12h14M13 6l6 6-6 6"/>'),
@@ -379,7 +380,7 @@ def build_about():
 <li><b>Ngôi nhà:</b> sự an cư, mục tiêu cuối cùng của mỗi công trình.</li>
 <li><b>Vòng cung xanh:</b> sự kết nối và trọn vẹn giữa khách hàng và nhà thầu.</li>
 <li><b>Màu vàng và xanh:</b> vàng là “Lộc” thịnh vượng, xanh dương là sự vững chắc.</li></ul></div></div></section>"""
-    stats = [("số năm hoạt động", "Năm kinh nghiệm"), ("số dự án", "Dự án đã bàn giao"), ("số kỹ sư", "Kỹ sư và chuyên viên"), ("số chứng chỉ", "Chứng chỉ năng lực")]
+    stats = [("số năm", "Năm kinh nghiệm"), ("số dự án", "Dự án đã bàn giao"), ("số kỹ sư", "Kỹ sư và chuyên viên"), ("số lượng", "Chứng chỉ năng lực")]
     main += ('<section><div class="wrap"><div class="sec-head rv"><span class="kicker">Năng lực và đội ngũ</span><h2>Con số sẽ được cập nhật bằng dữ liệu thật</h2>'
              '<p class="lead">Các ô dưới đây giữ chỗ cho số liệu thực tế của công ty. Chúng tôi không tự đặt con số khi chưa có xác nhận.</p></div><div class="grid g4">%s</div>'
              '<h3 style="margin-top:44px" class="rv">Đội ngũ chủ chốt</h3><div class="grid g3">%s</div></div></section>'
@@ -491,7 +492,7 @@ def build_contact():
     info = "".join([
         li("pin", "Địa chỉ", '<span data-lma="address">[cập nhật]</span>'),
         li("phone", "Hotline", '<a href="@/lien-he.html" data-lma="hotline">[cập nhật]</a>'),
-        li("doc", "Zalo", '<a href="@/lien-he.html" data-lma="zalo">Nhắn Zalo cho Lộc Minh Anh</a>'),
+        li("chat", "Zalo", '<a href="@/lien-he.html" data-lma="zalo">Nhắn Zalo cho Lộc Minh Anh</a>'),
         li("mail", "Email", '<a href="@/lien-he.html" data-lma="email">[cập nhật]</a>'),
         li("clock", "Giờ làm việc", '<span data-lma="hours">[cập nhật]</span>'),
         li("fb", "Facebook", '<a href="@/lien-he.html" data-lma="facebook">Trang Facebook Lộc Minh Anh</a>')])
