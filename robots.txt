@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://huyvo92vn.github.io/LOCMINHANH/sitemap.xml
