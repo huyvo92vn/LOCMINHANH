@@ -43,7 +43,7 @@ ul{margin:0 0 1em;padding-left:1.2em}
 .site-header{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .site-header .wrap{display:flex;align-items:center;gap:16px;min-height:var(--hh)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
-.brand .mark{background:#fff;border-radius:10px;padding:3px 6px;line-height:0;flex:none}
+.brand .mark{line-height:0;flex:none;border-radius:10px}
 .brand .mark img{height:46px;width:auto}
 .brand-name{font-weight:800;letter-spacing:.05em;color:var(--kick);font-size:1.02rem;line-height:1.1;white-space:nowrap}
 @media (max-width:359px){.brand-name{font-size:.9rem}}
@@ -123,7 +123,7 @@ section{padding:clamp(52px,8vw,96px) 0}
 .hero .lead{font-size:1.12rem}
 .hero-art{position:relative;display:grid;place-items:center;min-height:300px}
 .hero-art .arc{position:absolute;inset:-6% -10%;width:120%;height:112%;z-index:0;pointer-events:none}
-.logo-card{position:relative;z-index:1;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);width:min(100%,430px)}
+.logo-card{position:relative;z-index:1;border-radius:20px;padding:8px;width:min(100%,460px)}
 .logo-card img{width:100%}
 .trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin:28px 0 0;padding:0;list-style:none;color:var(--muted);font-size:.9rem;font-weight:500}
 .trust li{display:flex;align-items:center;gap:8px}
@@ -261,4 +261,10 @@ input:focus,select:focus,textarea:focus{outline:3px solid var(--ring);outline-of
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
   .js .rv{opacity:1;transform:none}
+}
+
+/* Logo nền trong suốt. Trên nền tối (giao diện tối) đặt trong khung trắng bo góc theo Brand Kit; footer navy luôn dùng khung trắng */
+@media (prefers-color-scheme:dark){
+  .brand .mark{background:#fff;padding:3px 6px}
+  .logo-card{background:#fff;padding:18px;box-shadow:var(--shadow)}
 }

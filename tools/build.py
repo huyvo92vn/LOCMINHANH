@@ -195,7 +195,7 @@ CONTACT_DEFAULT = PH("cập nhật")
 def schema_org():
     return json.dumps({"@context": "https://schema.org", "@type": ["GeneralContractor", "LocalBusiness"],
         "name": "Lộc Minh Anh", "alternateName": "LMA", "slogan": SLOGAN, "url": BASE,
-        "logo": BASE + "assets/img/logo-lma.jpg", "image": BASE + "assets/img/og-image.jpg",
+        "logo": BASE + "assets/img/logo-lma.png", "image": BASE + "assets/img/og-image.jpg",
         "description": "Công ty tổng thầu xây dựng khu vực miền Trung, Việt Nam: thiết kế – thi công trọn gói, dân dụng và công nghiệp, hoàn thiện, cải tạo, quản lý dự án, bảo hành bảo trì.",
         "areaServed": "Miền Trung, Việt Nam", "address": {"@type": "PostalAddress", "addressCountry": "VN"}},
         ensure_ascii=False)
@@ -240,7 +240,7 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 %(main)s
 </main>
 <footer class="site-footer"><div class="wrap">
-<div><a class="brand-full" href="@/index.html" aria-label="Lộc Minh Anh – về trang chủ"><img src="@/assets/img/logo-lma.jpg" width="730" height="640" alt="Logo Lộc Minh Anh" loading="lazy"></a>
+<div><a class="brand-full" href="@/index.html" aria-label="Lộc Minh Anh – về trang chủ"><img src="@/assets/img/logo-lma.png" width="730" height="640" alt="Logo Lộc Minh Anh" loading="lazy"></a>
 <p style="margin-top:14px"><b>Công ty Lộc Minh Anh</b><br>Tổng thầu xây dựng khu vực miền Trung</p>
 <p>%(slogan)s</p></div>
 <div><h2>Liên kết</h2><ul>
@@ -311,8 +311,7 @@ def build_home():
 <p class="lead">Lộc Minh Anh nhận trọn gói từ thiết kế, thi công đến hoàn thiện công trình. Một đầu mối chịu trách nhiệm, tiến độ và chất lượng được cam kết rõ ràng trong hợp đồng.</p>
 <div class="btns"><a class="btn btn-gold" href="@/lien-he.html#bao-gia">Nhận tư vấn dự án</a><a class="btn btn-line" href="@/du-an.html">Xem dự án</a></div>
 <ul class="trust"><li>Một đầu mối chịu trách nhiệm</li><li>Báo giá bóc tách theo hạng mục</li><li>Tiến độ ghi trong hợp đồng</li></ul></div>
-<div class="hero-art rv"><svg class="arc" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="200" cy="160" rx="196" ry="74" transform="rotate(-12 200 160)" fill="none" stroke="#1F8A9A" stroke-opacity=".4" stroke-width="2"/><ellipse cx="200" cy="165" rx="170" ry="60" transform="rotate(-12 200 160)" fill="none" stroke="#F0B429" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 8"/></svg>
-<div class="logo-card"><img src="@/assets/img/logo-lma.jpg" width="730" height="640" alt="Logo Lộc Minh Anh – LMA, Vững bền kiến tạo tương lai" fetchpriority="high"></div></div>
+<div class="hero-art rv"><div class="logo-card"><img src="@/assets/img/logo-lma.png" width="730" height="640" alt="Logo Lộc Minh Anh – LMA, Vững bền kiến tạo tương lai" fetchpriority="high"></div></div>
 </div></section>""" % SLOGAN
 
     intro = """<section id="gioi-thieu"><div class="wrap split">
@@ -373,7 +372,7 @@ def build_about():
 <article class="card rv"><span class="num">SỨ MỆNH</span><h3>Công trình bền theo thời gian</h3><p>Kiến tạo những công trình an toàn, đúng tiến độ, bền vững theo thời gian và minh bạch chi phí cho mọi khách hàng.</p></article></div></div></section>"""
     main += ('<section><div class="wrap"><div class="sec-head rv"><span class="kicker">Giá trị cốt lõi</span><h2>Năm giá trị định hướng mọi quyết định</h2></div><div class="grid g3">%s</div></div></section>'
              % "".join('<article class="card rv"><span class="num">%02d</span><h3>%s</h3><p>%s</p></article>' % (i + 1, t, d) for i, (t, d) in enumerate(vals)))
-    main += """<section class="alt"><div class="wrap split"><div class="rv"><div class="logo-card" style="margin:auto"><img src="@/assets/img/logo-lma.jpg" width="730" height="640" alt="Logo Lộc Minh Anh" loading="lazy"></div></div>
+    main += """<section class="alt"><div class="wrap split"><div class="rv"><div class="logo-card" style="margin:auto"><img src="@/assets/img/logo-lma.png" width="730" height="640" alt="Logo Lộc Minh Anh" loading="lazy"></div></div>
 <div class="rv"><span class="kicker">Ý nghĩa logo</span><h2>Biểu tượng của sự vững chắc và an cư</h2>
 <ul class="checks"><li><b>Chữ LMA:</b> bộ chữ cái viết tắt của Lộc Minh Anh, dựng khối chắc chắn.</li>
 <li><b>Cụm tòa nhà:</b> quy mô và năng lực thi công công trình.</li>
@@ -467,7 +466,7 @@ def build_blog():
     for p in POSTS:
         art = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": p["title"], "description": p["desc"], "inLanguage": "vi",
                           "datePublished": TODAY, "dateModified": TODAY, "author": {"@type": "Organization", "name": "Lộc Minh Anh"},
-                          "publisher": {"@type": "Organization", "name": "Lộc Minh Anh", "logo": {"@type": "ImageObject", "url": BASE + "assets/img/logo-lma.jpg"}},
+                          "publisher": {"@type": "Organization", "name": "Lộc Minh Anh", "logo": {"@type": "ImageObject", "url": BASE + "assets/img/logo-lma.png"}},
                           "image": BASE + "assets/img/og-image.jpg", "mainEntityOfPage": BASE + "tin-tuc/%s.html" % p["slug"]}, ensure_ascii=False)
         m = hero_page(p["title"], '<time datetime="%s">19/10/2026</time> · %s · %s' % (TODAY, p["tag"], p["read"]), [HOME, '<a href="@/tin-tuc.html">Tin tức</a>', "Bài viết"])
         m += '<section><div class="wrap"><article class="article">%s<div class="btns"><a class="btn btn-gold" href="@/lien-he.html#bao-gia">Nhận tư vấn dự án</a><a class="btn btn-line" href="@/tin-tuc.html">← Bài viết khác</a></div></article></div></section>' % p["body"]
