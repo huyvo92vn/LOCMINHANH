@@ -63,7 +63,7 @@ SERVICES = [
  dict(id="hoan-thien-noi-ngoai-that", ic="brush", name="Hoàn thiện nội ngoại thất",
   short="Từ mặt tiền, sơn, ốp lát đến nội thất theo thiết kế.",
   intro="Giai đoạn quyết định cảm nhận khi sử dụng. Chúng tôi thống nhất mẫu vật liệu và bản vẽ chi tiết trước khi thi công để kết quả đúng như đã duyệt.",
-  scope=["Ốp lát, sơn bả, trần thạch cao", "Cửa, lan can, cầu thang", "Mặt tiền, sân vườn, cổng và hàng rào", "Nội thất theo thiết kế: tủ bếp, tủ áo, vách ốp", "Lắp đặt thiết bị vệ sinh, thiết bị điện"],
+  scope=["Ốp lát, bả matit, sơn, trần thạch cao", "Cửa, lan can, cầu thang", "Mặt tiền, sân vườn, cổng và hàng rào", "Nội thất theo thiết kế: tủ bếp, tủ áo, vách ốp", "Lắp đặt thiết bị vệ sinh, thiết bị điện"],
   steps=["Chốt phong cách và vật liệu", "Duyệt mẫu thực tế", "Thi công hoàn thiện", "Kiểm tra chi tiết", "Bàn giao và xử lý tồn đọng"],
   commit=["Duyệt mẫu vật liệu trước khi thi công", "Hoàn thiện theo bản vẽ chi tiết đã thống nhất", "Biên bản bàn giao ghi rõ hạng mục tồn đọng và thời hạn xử lý"]),
  dict(id="cai-tao-sua-chua", ic="wrench", name="Cải tạo và sửa chữa công trình",
@@ -89,22 +89,22 @@ SERVICES = [
 CATS = [("all", "Tất cả"), ("nha-o", "Nhà ở"), ("thuong-mai", "Thương mại"), ("cong-nghiep", "Công nghiệp"), ("cai-tao", "Cải tạo")]
 CATNAME = dict(CATS)
 PROJECTS = [
- dict(slug="nha-pho-mau", cat="nha-o", name="Nhà phố [tên dự án]", cover="Ảnh mặt tiền dự án",
+ dict(slug="nha-pho-mau", cat="nha-o", art="nha-pho", type="Nhà phố", name="Nhà phố", cover="Ảnh mặt tiền dự án",
   items=["Thiết kế kiến trúc và kết cấu", "Thi công phần thô", "Hoàn thiện nội ngoại thất", "Bảo hành bảo trì"],
   desc="Mẫu trình bày cho nhà phố: mô tả nhu cầu của gia chủ, giải pháp mặt bằng, điểm nhấn mặt tiền và cách Lộc Minh Anh kiểm soát tiến độ. Thay đoạn này bằng thông tin dự án thật."),
- dict(slug="biet-thu-mau", cat="nha-o", name="Biệt thự [tên dự án]", cover="Ảnh phối cảnh dự án",
+ dict(slug="biet-thu-mau", cat="nha-o", art="biet-thu", type="Biệt thự", name="Biệt thự", cover="Ảnh phối cảnh dự án",
   items=["Tổng thầu thiết kế – thi công trọn gói", "Cảnh quan, sân vườn", "Nội thất theo thiết kế"],
   desc="Mẫu trình bày cho biệt thự: quy mô, phong cách kiến trúc, vật liệu chính và những thách thức thi công đã xử lý. Thay đoạn này bằng thông tin dự án thật."),
- dict(slug="van-phong-mau", cat="thuong-mai", name="Văn phòng [tên dự án]", cover="Ảnh không gian văn phòng",
+ dict(slug="van-phong-mau", cat="thuong-mai", art="van-phong", type="Văn phòng", name="Văn phòng", cover="Ảnh không gian văn phòng",
   items=["Thi công phần thô và hoàn thiện", "Hệ thống điện, mạng, chiếu sáng", "Vách, trần, sàn", "Bàn giao đúng hạn khai trương"],
   desc="Mẫu trình bày cho công trình văn phòng: yêu cầu về thời gian, cách bố trí công năng và biện pháp thi công không ảnh hưởng hoạt động xung quanh. Thay đoạn này bằng thông tin thật."),
- dict(slug="cua-hang-mau", cat="thuong-mai", name="Cửa hàng – showroom [tên dự án]", cover="Ảnh mặt tiền cửa hàng",
+ dict(slug="cua-hang-mau", cat="thuong-mai", art="showroom", type="Cửa hàng – showroom", name="Cửa hàng – showroom", cover="Ảnh mặt tiền cửa hàng",
   items=["Thiết kế và thi công trọn gói", "Mặt dựng, biển hiệu", "Hoàn thiện nội thất trưng bày"],
   desc="Mẫu trình bày cho cửa hàng hoặc showroom: nhận diện thương hiệu của chủ đầu tư, tiến độ gấp rút và hạng mục hoàn thiện. Thay đoạn này bằng thông tin dự án thật."),
- dict(slug="nha-xuong-mau", cat="cong-nghiep", name="Nhà xưởng [tên dự án]", cover="Ảnh tổng thể nhà xưởng",
+ dict(slug="nha-xuong-mau", cat="cong-nghiep", art="nha-xuong", type="Nhà xưởng", name="Nhà xưởng", cover="Ảnh tổng thể nhà xưởng",
   items=["Móng và sàn công nghiệp", "Khung thép, mái, vách", "Hạ tầng điện, nước, thoát nước", "Sân, đường nội bộ"],
   desc="Mẫu trình bày cho nhà xưởng hoặc kho: tải trọng thiết kế, tiến độ thi công theo giai đoạn và các biện pháp an toàn lao động. Thay đoạn này bằng thông tin dự án thật."),
- dict(slug="cai-tao-nha-mau", cat="cai-tao", name="Cải tạo [tên công trình]", cover="Ảnh trước và sau cải tạo",
+ dict(slug="cai-tao-nha-mau", cat="cai-tao", art="cai-tao", type="Cải tạo công trình", name="Cải tạo công trình", cover="Ảnh trước và sau cải tạo",
   items=["Khảo sát và đánh giá hiện trạng", "Chống thấm, gia cố", "Cải tạo mặt bằng, mặt tiền", "Thay mới điện nước"],
   desc="Mẫu trình bày cho dự án cải tạo: hiện trạng ban đầu, vấn đề cần xử lý, giải pháp và kết quả sau bàn giao. Thay đoạn này bằng thông tin dự án thật."),
 ]
@@ -117,7 +117,7 @@ PHOTOS = [  # (tệp, rộng, cao, chú thích)
  ("thep-san-cot", 1000, 751, "Cốt thép sàn quanh chân cột"),
  ("xe-bon-be-tong", 751, 1000, "Xe bồn vận chuyển bê tông đến công trường"),
  ("can-phang-be-tong", 1000, 751, "Cán phẳng bề mặt bê tông"),
- ("mat-duong-be-tong", 751, 1000, "Mặt đường bê tông sau hoàn thiện"),
+ ("mat-duong-be-tong", 751, 1000, "Mặt đường bê tông sau khi hoàn thiện"),
  ("bao-duong-be-tong", 751, 1000, "Phủ bạt bảo dưỡng bê tông"),
  ("thep-san-nghiem-thu", 1000, 751, "Cốt thép sàn chuẩn bị nghiệm thu"),
  ("xe-bon-san-bai", 751, 1000, "Đổ bê tông sân bãi bằng xe bồn"),
@@ -133,10 +133,10 @@ POSTS = [
 <h2>Những hạng mục thường nằm trong báo giá trọn gói</h2>
 <ul class="checks"><li><b>Thiết kế:</b> bản vẽ kiến trúc, kết cấu, điện nước và hồ sơ phục vụ xin phép xây dựng.</li>
 <li><b>Phần thô:</b> nhân công và vật tư cho móng, cột, dầm, sàn, tường, mái, đổ bê tông, xây tô.</li>
-<li><b>Phần hoàn thiện:</b> ốp lát, sơn bả, trần, cửa, cầu thang, thiết bị vệ sinh, thiết bị điện theo chủng loại đã thỏa thuận.</li>
+<li><b>Phần hoàn thiện:</b> ốp lát, bả matit, sơn, trần, cửa, cầu thang, thiết bị vệ sinh, thiết bị điện theo chủng loại đã thỏa thuận.</li>
 <li><b>Quản lý công trình:</b> giám sát, an toàn lao động, vệ sinh công trường.</li>
 <li><b>Bảo hành:</b> thời hạn và phạm vi ghi trong hợp đồng.</li></ul>
-<h2>Những khoản hay nằm ngoài báo giá</h2>
+<h2>Những khoản thường không nằm trong báo giá</h2>
 <p>Hãy hỏi rõ từng khoản dưới đây có được tính hay không, vì đây là nguồn phát sinh phổ biến:</p>
 <ul><li>Nội thất rời, đồ gia dụng, điều hòa, thang máy, hệ thống nhà thông minh.</li>
 <li>Sân vườn, hồ cá, cổng và hàng rào nếu chưa nằm trong bản vẽ.</li>
@@ -189,10 +189,11 @@ CONTACT_DEFAULT = PH("cập nhật")
 
 def schema_org():
     return json.dumps({"@context": "https://schema.org", "@type": ["GeneralContractor", "LocalBusiness"],
-        "name": "Lộc Minh Anh", "alternateName": "LMA", "slogan": SLOGAN, "url": BASE,
-        "logo": BASE + "assets/img/logo-lma.png", "image": BASE + "assets/img/og-image.jpg",
-        "description": "Công ty tổng thầu xây dựng khu vực miền Trung, Việt Nam: thiết kế – thi công trọn gói, dân dụng và công nghiệp, hoàn thiện, cải tạo, quản lý dự án, bảo hành bảo trì.",
-        "areaServed": "Miền Trung, Việt Nam", "address": {"@type": "PostalAddress", "addressCountry": "VN"}},
+        "name": "Công ty TNHH Xây dựng và Thương mại Lộc Minh Anh", "alternateName": "Lộc Minh Anh", "slogan": SLOGAN, "url": BASE,
+        "taxID": "0402332326", "telephone": "+84905677429", "email": "info@locminhanh.com",
+        "logo": BASE + "assets/img/logo-lockup.png", "image": BASE + "assets/img/og-image.jpg",
+        "description": "Doanh nghiệp xây dựng và thương mại tại Đà Nẵng; giới thiệu định hướng dịch vụ thiết kế, thi công, hoàn thiện và cải tạo công trình.",
+        "areaServed": "Đà Nẵng, Việt Nam", "address": {"@type": "PostalAddress", "streetAddress": "11 Thanh Lương 19", "addressLocality": "Phường Hòa Xuân, thành phố Đà Nẵng", "addressCountry": "VN"}},
         ensure_ascii=False)
 
 def page(file, title, desc, main, active="", schema=None, og_type="website", lightbox=False):
@@ -236,22 +237,22 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 %(main)s
 </main>
 <footer class="site-footer"><div class="wrap">
-<div><a class="brand-full" href="@/index.html" aria-label="Lộc Minh Anh – về trang chủ"><img src="@/assets/img/logo-lma.png" width="730" height="640" alt="Logo Lộc Minh Anh" loading="lazy"></a>
-<p style="margin-top:14px"><b>Công ty Lộc Minh Anh</b><br>Tổng thầu xây dựng khu vực miền Trung</p>
+<div><a class="brand-full" href="@/index.html" aria-label="Lộc Minh Anh – về trang chủ"><img src="@/assets/img/logo-mark.png" width="625" height="392" alt="Biểu tượng LMA" loading="lazy"></a>
+<p style="margin-top:14px"><b>Công ty TNHH Xây dựng và Thương mại Lộc Minh Anh</b></p>
 <p>%(slogan)s</p></div>
 <div><h2>Liên kết</h2><ul>
 <li><a href="@/gioi-thieu.html">Giới thiệu</a></li><li><a href="@/dich-vu.html">Dịch vụ</a></li><li><a href="@/du-an.html">Dự án</a></li>
 <li><a href="@/quy-trinh.html">Quy trình và cam kết</a></li><li><a href="@/tin-tuc.html">Tin tức</a></li><li><a href="@/tuyen-dung.html">Tuyển dụng</a></li><li><a href="@/lien-he.html">Liên hệ</a></li></ul></div>
 <div><h2>Thông tin công ty</h2>
-<p>Địa chỉ: <span data-lma="address">[cập nhật]</span></p>
-<p>Hotline: <a href="@/lien-he.html" data-lma="hotline">[cập nhật]</a></p>
-<p>Email: <a href="@/lien-he.html" data-lma="email">[cập nhật]</a></p>
+<p>Địa chỉ: <span data-lma="address">11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng</span></p>
+<p>Điện thoại: <a href="tel:0905677429" data-lma="hotline">0905 677 429</a></p>
+<p>Email: <a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a></p>
 <p>Giờ làm việc: <span data-lma="hours">[cập nhật]</span></p></div>
 <div><h2>Kết nối</h2><ul>
 <li><a href="@/lien-he.html" data-lma="facebook">Facebook Lộc Minh Anh</a></li>
 <li><a href="@/lien-he.html" data-lma="zalo">Chat Zalo</a></li>
 <li><a href="@/lien-he.html#bao-gia">Nhận báo giá</a></li></ul></div>
-<div class="copy"><span>© 2026 Công ty Lộc Minh Anh. Bảo lưu mọi quyền.</span><span>Mã số thuế: [cập nhật]</span></div>
+<div class="copy"><span>© 2026 Công ty TNHH Xây dựng và Thương mại Lộc Minh Anh. Bảo lưu mọi quyền.</span><span>Mã số thuế: 0402332326</span></div>
 </div></footer>
 <div class="fab" aria-label="Liên hệ nhanh">
 <a class="zalo" href="@/lien-he.html" data-lma="zalo" aria-label="Nhắn Zalo cho Lộc Minh Anh">Zalo</a>
@@ -276,7 +277,7 @@ HOME = '<a href="@/index.html">Trang chủ</a>'
 def cta_band(title="Bạn đang có dự án cần triển khai?", text="Gửi nhu cầu của bạn, Lộc Minh Anh sẽ liên hệ để khảo sát và lập báo giá chi tiết."):
     return ('<section class="band-navy"><div class="wrap center rv"><h2>%s</h2><p class="lead">%s</p>'
             '<div class="btns" style="justify-content:center"><a class="btn btn-gold" href="@/lien-he.html#bao-gia">Nhận tư vấn dự án</a>'
-            '<a class="btn btn-line" href="@/du-an.html">Xem dự án</a></div></div></section>' % (title, text))
+            '<a class="btn btn-line" href="@/du-an.html">Xem loại hình công trình</a></div></div></section>' % (title, text))
 
 def gallery(photos, hint=""):
     b = ""
@@ -289,9 +290,14 @@ def svc_card(s):
     return ('<article class="card rv"><div class="ico">%s</div><h3>%s</h3><p>%s</p><a class="more" href="@/dich-vu.html#%s">Xem chi tiết<span class="sr"> %s</span> →</a></article>'
             % (IC[s["ic"]], s["name"], s["short"], s["id"], esc(s["name"])))
 
+def project_art(p):
+    return ('<div class="concept-art"><img src="@/assets/img/types/%s.jpg" width="1200" height="900" loading="lazy" '
+            'alt="Ảnh công trình %s"></div>' % (p["art"], esc(p["type"], True)))
+
 def proj_card(p, link="@/du-an/%s.html"):
-    return ('<a class="pcard rv" href="%s" data-cat="%s"><div class="ph"><span>%s</span></div><span class="tag">%s</span><h3>%s</h3><p class="meta">Loại hình: %s · Địa điểm: [địa điểm] · Năm: [năm]</p></a>'
-            % (link % p["slug"], p["cat"], p["cover"], CATNAME[p["cat"]], esc(p["name"]), CATNAME[p["cat"]]))
+    return ('<a class="pcard rv" href="%s" data-cat="%s">%s<span class="tag">%s</span><h3>%s</h3>'
+            '<p class="meta">Hình ảnh công trình</p></a>'
+            % (link % p["slug"], p["cat"], project_art(p), CATNAME[p["cat"]], esc(p["type"])))
 
 STEPS5 = [("Tiếp nhận", "Nghe nhu cầu, khảo sát hiện trạng."), ("Thiết kế và báo giá", "Phương án, dự toán chi tiết."),
           ("Ký hợp đồng", "Chốt phạm vi, tiến độ, thanh toán."), ("Thi công", "Báo cáo định kỳ, nghiệm thu theo giai đoạn."),
@@ -302,12 +308,12 @@ def steps5(dark=False):
 # ---------------------------------------------------------------- TRANG CHỦ
 def build_home():
     hero = """<section class="hero"><div class="wrap">
-<div class="rv"><span class="kicker">Tổng thầu xây dựng · Miền Trung</span>
+<div class="rv"><span class="kicker">Xây dựng và thương mại · Đà Nẵng</span>
 <h1>%s</h1>
 <p class="lead">Lộc Minh Anh nhận trọn gói từ thiết kế, thi công đến hoàn thiện công trình. Một đầu mối chịu trách nhiệm, tiến độ và chất lượng được cam kết rõ ràng trong hợp đồng.</p>
-<div class="btns"><a class="btn btn-gold" href="@/lien-he.html#bao-gia">Nhận tư vấn dự án</a><a class="btn btn-line" href="@/du-an.html">Xem dự án</a></div>
+<div class="btns"><a class="btn btn-gold" href="@/lien-he.html#bao-gia">Nhận tư vấn dự án</a><a class="btn btn-line" href="@/du-an.html">Xem loại hình công trình</a></div>
 <ul class="trust"><li>Một đầu mối chịu trách nhiệm</li><li>Báo giá bóc tách theo hạng mục</li><li>Tiến độ ghi trong hợp đồng</li></ul></div>
-<div class="hero-art rv"><div class="logo-card"><img src="@/assets/img/logo-lma.png" width="730" height="640" alt="Logo Lộc Minh Anh – LMA, Vững bền kiến tạo tương lai" fetchpriority="high"></div></div>
+<div class="hero-art rv"><div class="logo-card"><img src="@/assets/img/logo-lockup.png" width="581" height="446" alt="Logo Lộc Minh Anh – Vững bền kiến tạo tương lai" fetchpriority="high"></div></div>
 </div></section>""" % SLOGAN
 
     intro = """<section id="gioi-thieu"><div class="wrap split">
@@ -315,7 +321,7 @@ def build_home():
 <p class="lead">Chúng tôi không chỉ thi công. Lộc Minh Anh điều phối thiết kế, vật tư, nhân lực và an toàn để chủ đầu tư yên tâm với một hợp đồng và một đội ngũ chịu trách nhiệm.</p>
 <ul class="checks"><li>Tầm nhìn: trở thành nhà tổng thầu đáng tin cậy của khách hàng miền Trung.</li><li>Sứ mệnh: kiến tạo công trình an toàn, đúng tiến độ, bền vững theo thời gian.</li><li>Giá trị cốt lõi: Uy tín · Chất lượng · Đúng tiến độ · An toàn · Đồng hành lâu dài.</li></ul>
 <a class="btn btn-line" href="@/gioi-thieu.html">Tìm hiểu về LMA</a></div>
-<figure class="photo rv" style="margin:0"><img src="@/assets/img/site/doi-ngu-thi-cong.jpg" width="1000" height="751" loading="lazy" alt="Đội ngũ thi công kiểm tra cốt thép sàn tại công trường"></figure>
+<figure class="photo rv" style="margin:0"><img src="@/assets/img/types/nha-pho.jpg" width="1200" height="900" loading="lazy" alt="Nhà ở hiện đại"></figure>
 </div></section>"""
 
     svc = ('<section class="alt" id="dich-vu"><div class="wrap"><div class="sec-head rv"><span class="kicker">Dịch vụ nổi bật</span><h2>Từ ý tưởng đến bàn giao</h2>'
@@ -326,14 +332,14 @@ def build_home():
             '<p class="lead">Mỗi giai đoạn có đầu ra rõ ràng để chủ đầu tư theo dõi và nghiệm thu.</p></div>%s'
             '<div class="btns"><a class="btn btn-gold" href="@/quy-trinh.html">Xem chi tiết quy trình</a></div></div></section>' % steps5())
 
-    proj = ('<section id="du-an"><div class="wrap"><div class="sec-head rv"><span class="kicker">Dự án tiêu biểu</span><h2>Công trình tiêu biểu</h2>'
-            '<p class="lead">Các khung dưới đây là dự án mẫu. Thay bằng ảnh và thông tin công trình thật của Lộc Minh Anh.</p></div>'
-            '<div class="grid g3">%s</div><div class="btns"><a class="btn btn-line" href="@/du-an.html">Xem tất cả dự án</a></div></div></section>'
+    proj = ('<section id="du-an"><div class="wrap"><div class="sec-head rv"><span class="kicker">Công trình tiêu biểu</span><h2>Tham khảo công trình xây dựng</h2>'
+            '<p class="lead">Nhà phố, biệt thự, văn phòng và công trình thương mại, công nghiệp.</p></div>'
+            '<div class="grid g3">%s</div><div class="btns"><a class="btn btn-line" href="@/du-an.html">Xem công trình</a></div></div></section>'
             % "".join(proj_card(p) for p in PROJECTS[:3]))
 
-    log = ('<section class="alt"><div class="wrap"><div class="sec-head rv"><span class="kicker">Nhật ký công trường</span><h2>Hình ảnh thi công thực tế</h2>'
-           '<p class="lead">Cốt thép, đổ và bảo dưỡng bê tông: những công đoạn quyết định độ bền của công trình, được ghi lại tại hiện trường.</p></div>%s'
-           '<div class="btns"><a class="btn btn-line" href="@/du-an.html#cong-truong">Xem thêm ảnh công trường</a></div></div></section>' % gallery(PHOTOS[:8]))
+    log = ('<section class="alt"><div class="wrap"><div class="sec-head rv"><span class="kicker">Hình ảnh xây dựng</span><h2>Hình ảnh công đoạn thi công</h2>'
+           '<p class="lead">Các công đoạn cốt thép, đổ và bảo dưỡng bê tông.</p></div>%s'
+           '<div class="btns"><a class="btn btn-line" href="@/du-an.html#cong-truong">Xem thêm hình tham khảo</a></div></div></section>' % gallery(PHOTOS[:8]))
 
     why = [("handshake", "Một đầu mối trọn gói", "Thiết kế, thi công, hoàn thiện và bảo hành do cùng một đội ngũ chịu trách nhiệm."),
            ("doc", "Minh bạch chi phí", "Dự toán bóc tách theo hạng mục. Phát sinh chỉ thực hiện khi bạn xác nhận bằng văn bản."),
@@ -347,8 +353,8 @@ def build_home():
     # Never publish invented client quotations. Add verified, consented feedback here later.
     tes = ''
 
-    page("index.html", "Lộc Minh Anh – Tổng thầu xây dựng miền Trung | Vững bền kiến tạo tương lai",
-         "Lộc Minh Anh nhận tổng thầu thiết kế – thi công trọn gói, xây dựng dân dụng và công nghiệp tại miền Trung. Một đầu mối, tiến độ và chi phí minh bạch. Nhận tư vấn dự án.",
+    page("index.html", "Lộc Minh Anh – Xây dựng và thương mại tại Đà Nẵng | Vững bền kiến tạo tương lai",
+         "Lộc Minh Anh nhận tư vấn thiết kế, thi công và hoàn thiện công trình tại Đà Nẵng. Tìm hiểu dịch vụ, loại hình công trình và liên hệ tư vấn.",
          hero + intro + svc + proc + proj + log + whys + tes + cta_band(), active="index.html", schema=schema_org(), lightbox=True)
 
 # ---------------------------------------------------------------- GIỚI THIỆU
@@ -356,33 +362,27 @@ def build_about():
     vals = [("Uy tín", "Nói được thì làm được, mọi cam kết đều nằm trong hợp đồng."), ("Chất lượng", "Kiểm soát vật tư và nghiệm thu từng công đoạn."),
             ("Đúng tiến độ", "Mốc thời gian rõ ràng, báo cáo định kỳ."), ("An toàn", "An toàn lao động và an toàn cho khu vực xung quanh."),
             ("Đồng hành lâu dài", "Có mặt cả sau khi bàn giao.")]
-    main = hero_page("Về Lộc Minh Anh", "Công ty tổng thầu xây dựng khu vực miền Trung. Chúng tôi làm việc bằng cam kết cụ thể: tiến độ, chất lượng và chi phí rõ ràng trong từng hợp đồng.", [HOME, "Giới thiệu"])
+    main = hero_page("Về Lộc Minh Anh", "Công ty Lộc Minh Anh hoạt động trong lĩnh vực xây dựng và thương mại tại Đà Nẵng. Chúng tôi đề cao chất lượng, tiến độ và chi phí rõ ràng trong từng hợp đồng.", [HOME, "Giới thiệu"])
     main += """<section><div class="wrap split"><div class="rv"><span class="kicker">Câu chuyện công ty</span><h2>Làm công trình theo cách dễ hiểu và dễ kiểm chứng</h2>
 <p>Lộc Minh Anh theo đuổi một cách làm đơn giản: chủ đầu tư chỉ cần làm việc với một đầu mối, hiểu rõ mình đang trả tiền cho hạng mục nào, và biết công trình đang ở giai đoạn nào.</p>
 <p>Từ thiết kế, dự toán, thi công đến bảo hành, mỗi bước đều có hồ sơ, biên bản và người chịu trách nhiệm cụ thể.</p>
-<p class="note">Thông tin thành lập: %s %s %s. Bổ sung câu chuyện thật của công ty tại đây.</p></div>
-<figure class="photo rv" style="margin:0"><img src="@/assets/img/site/giam-sat-cong-truong.jpg" width="1000" height="751" loading="lazy" alt="Giám sát thi công cốt thép tại công trường"></figure></div></section>""" % (PH("năm thành lập"), PH("người sáng lập"), PH("địa bàn hoạt động"))
+</div>
+<figure class="photo rv" style="margin:0"><img src="@/assets/img/types/van-phong.jpg" width="1200" height="900" loading="lazy" alt="Công trình văn phòng hiện đại"></figure></div></section>"""
     main += """<section class="alt"><div class="wrap"><div class="grid g2">
 <article class="card rv"><span class="num">TẦM NHÌN</span><h3>Nhà tổng thầu đáng tin cậy</h3><p>Trở thành nhà tổng thầu xây dựng được khách hàng miền Trung tin tưởng nhờ những công trình bàn giao đúng cam kết.</p></article>
 <article class="card rv"><span class="num">SỨ MỆNH</span><h3>Công trình bền theo thời gian</h3><p>Kiến tạo những công trình an toàn, đúng tiến độ, bền vững theo thời gian và minh bạch chi phí cho mọi khách hàng.</p></article></div></div></section>"""
     main += ('<section><div class="wrap"><div class="sec-head rv"><span class="kicker">Giá trị cốt lõi</span><h2>Năm giá trị định hướng mọi quyết định</h2></div><div class="grid g3">%s</div></div></section>'
              % "".join('<article class="card rv"><span class="num">%02d</span><h3>%s</h3><p>%s</p></article>' % (i + 1, t, d) for i, (t, d) in enumerate(vals)))
-    main += """<section class="alt"><div class="wrap split"><div class="rv"><div class="logo-card" style="margin:auto"><img src="@/assets/img/logo-lma.png" width="730" height="640" alt="Logo Lộc Minh Anh" loading="lazy"></div></div>
+    main += """<section class="alt"><div class="wrap split"><div class="rv"><div class="logo-card" style="margin:auto"><img src="@/assets/img/logo-lockup.png" width="581" height="446" alt="Logo Lộc Minh Anh – Vững bền kiến tạo tương lai" loading="lazy"></div></div>
 <div class="rv"><span class="kicker">Ý nghĩa logo</span><h2>Biểu tượng của sự vững chắc và an cư</h2>
-<ul class="checks"><li><b>Chữ LMA:</b> bộ chữ cái viết tắt của Lộc Minh Anh, dựng khối chắc chắn.</li>
-<li><b>Cụm tòa nhà:</b> quy mô và năng lực thi công công trình.</li>
+<ul class="checks"><li><b>Chữ LMA:</b> chữ viết tắt của Lộc Minh Anh, dựng khối chắc chắn.</li>
+<li><b>Cụm tòa nhà:</b> hình ảnh gợi liên tưởng đến lĩnh vực xây dựng.</li>
 <li><b>Ngôi nhà:</b> sự an cư, mục tiêu cuối cùng của mỗi công trình.</li>
 <li><b>Vòng cung xanh:</b> sự kết nối và trọn vẹn giữa khách hàng và nhà thầu.</li>
 <li><b>Màu vàng và xanh:</b> vàng là “Lộc” thịnh vượng, xanh dương là sự vững chắc.</li></ul></div></div></section>"""
-    stats = [("số năm", "Năm kinh nghiệm"), ("số dự án", "Dự án đã bàn giao"), ("số kỹ sư", "Kỹ sư và chuyên viên"), ("số lượng", "Chứng chỉ năng lực")]
-    main += ('<section><div class="wrap"><div class="sec-head rv"><span class="kicker">Năng lực và đội ngũ</span><h2>Con số sẽ được cập nhật bằng dữ liệu thật</h2>'
-             '<p class="lead">Các ô dưới đây giữ chỗ cho số liệu thực tế của công ty. Chúng tôi không tự đặt con số khi chưa có xác nhận.</p></div><div class="grid g4">%s</div>'
-             '<h3 style="margin-top:44px" class="rv">Đội ngũ chủ chốt</h3><div class="grid g3">%s</div></div></section>'
-             % ("".join('<div class="card rv center"><div style="font-size:1.7rem;font-weight:800">%s</div><p style="margin:6px 0 0">%s</p></div>' % (PH(a), b) for a, b in stats),
-                "".join('<div class="card rv"><div class="ph" style="aspect-ratio:1/1;margin-bottom:14px"><span>Ảnh chân dung</span></div><h3>[Họ và tên]</h3><p>%s</p></div>' % r for r in ["Giám đốc điều hành", "Giám đốc kỹ thuật", "Chỉ huy trưởng công trình"])))
     main += cta_band()
-    page("gioi-thieu.html", "Giới thiệu – Lộc Minh Anh | Tổng thầu xây dựng miền Trung",
-         "Câu chuyện, tầm nhìn, sứ mệnh, giá trị cốt lõi, ý nghĩa logo và năng lực của Lộc Minh Anh, công ty tổng thầu xây dựng khu vực miền Trung.", main, active="gioi-thieu.html")
+    page("gioi-thieu.html", "Giới thiệu doanh nghiệp | Lộc Minh Anh",
+         "Giới thiệu Công ty Lộc Minh Anh: câu chuyện, tầm nhìn, giá trị và định hướng xây dựng tại Đà Nẵng.", main, active="gioi-thieu.html")
 
 # ---------------------------------------------------------------- DỊCH VỤ
 def build_services():
@@ -401,29 +401,28 @@ def build_services():
 
 # ---------------------------------------------------------------- DỰ ÁN
 def build_projects():
-    main = hero_page("Dự án tiêu biểu", "Lọc theo loại hình để xem các công trình nhà ở, thương mại, công nghiệp và cải tạo.", [HOME, "Dự án"])
-    main += ('<section><div class="wrap"><h2 class="sr">Danh sách dự án</h2><div class="filters" role="group" aria-label="Lọc dự án theo loại hình">%s</div>'
-             '<p class="meta-line" id="fcount" aria-live="polite">%d dự án</p><div class="grid g3">%s</div>'
-             '<p class="note">Các dự án trên là dự án mẫu. Thay tên, địa điểm, quy mô, năm và ảnh bằng thông tin thật.</p></div></section>'
+    main = hero_page("Công trình tiêu biểu", "Nhà phố, biệt thự, văn phòng, showroom, nhà xưởng và công trình cải tạo.", [HOME, "Công trình tiêu biểu"])
+    main += ('<section><div class="wrap"><h2 class="sr">Danh sách công trình</h2><div class="filters" role="group" aria-label="Lọc dự án theo loại hình">%s</div>'
+             '<p class="meta-line" id="fcount" aria-live="polite">%d loại hình</p><div class="grid g3">%s</div>'
+             '</div></section>'
              % ("".join('<button type="button" data-filter="%s" aria-pressed="%s">%s</button>' % (k, "true" if k == "all" else "false", v) for k, v in CATS),
                 len(PROJECTS), "".join(proj_card(p, "@/du-an/%s.html") for p in PROJECTS)))
-    main += ('<section class="alt" id="cong-truong"><div class="wrap"><div class="sec-head rv"><span class="kicker">Nhật ký công trường</span><h2>Hình ảnh thi công thực tế</h2>'
-             '<p class="lead">Bấm vào ảnh để xem lớn. Khi có thông tin từng dự án, ảnh sẽ được gắn vào đúng trang dự án.</p></div>%s</div></section>' % gallery(PHOTOS))
+    main += ('<section class="alt" id="cong-truong"><div class="wrap"><div class="sec-head rv"><span class="kicker">Hình ảnh xây dựng</span><h2>Hình ảnh công đoạn thi công</h2>'
+             '<p class="lead">Bấm vào ảnh để xem lớn.</p></div>%s</div></section>' % gallery(PHOTOS))
     main += cta_band()
-    page("du-an.html", "Dự án – Công trình tiêu biểu | Lộc Minh Anh",
-         "Dự án tiêu biểu của Lộc Minh Anh: nhà ở, thương mại, công nghiệp, cải tạo. Xem loại hình, quy mô, hạng mục và hình ảnh thi công thực tế.", main, active="du-an.html", lightbox=True)
+    page("du-an.html", "Công trình tiêu biểu | Lộc Minh Anh",
+         "Hình ảnh công trình nhà ở, thương mại, công nghiệp và cải tạo.", main, active="du-an.html", lightbox=True)
     for p in PROJECTS:
-        gal = "".join('<div class="ph rv"><span>%s</span></div>' % l for l in GALLERY_LABELS)
-        facts = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (a, b) for a, b in [("Loại hình", CATNAME[p["cat"]]), ("Địa điểm", "[địa điểm]"), ("Quy mô", "[diện tích / số tầng]"), ("Năm thực hiện", "[năm]"), ("Chủ đầu tư", "[tên chủ đầu tư]")])
-        m = hero_page(esc(p["name"]), "Loại hình %s · Dự án mẫu, thay bằng thông tin thật." % CATNAME[p["cat"]].lower(), [HOME, '<a href="@/du-an.html">Dự án</a>', esc(p["name"])])
-        m += ('<section><div class="wrap split"><div class="rv"><div class="ph"><span>%s</span></div></div><div class="rv"><h2>Thông tin dự án</h2><dl class="facts">%s</dl></div></div></section>'
-              '<section class="alt"><div class="wrap split"><div class="rv"><span class="kicker">Mô tả</span><h2>Về dự án</h2><p>%s</p></div>'
-              '<div class="rv"><h3>Hạng mục thực hiện</h3><ul class="checks">%s</ul></div></div></section>'
-              '<section><div class="wrap"><div class="sec-head rv"><span class="kicker">Thư viện ảnh</span><h2>Hình ảnh dự án</h2></div><div class="grid g3">%s</div>'
-              '<div class="btns"><a class="btn btn-line" href="@/du-an.html">← Tất cả dự án</a></div></div></section>'
-              % (p["cover"], facts, esc(p["desc"]), "".join("<li>%s</li>" % x for x in p["items"]), gal)) + cta_band()
-        page("du-an/%s.html" % p["slug"], "%s – Dự án | Lộc Minh Anh" % p["name"],
-             "Dự án mẫu %s của Lộc Minh Anh: địa điểm, quy mô, năm thực hiện, hạng mục và thư viện ảnh." % p["name"], m, active="du-an.html")
+        m = hero_page(esc(p["type"]), "Các hạng mục xây dựng cho " + p["type"].lower() + ".", [HOME, '<a href="@/du-an.html">Công trình tiêu biểu</a>', esc(p["type"])])
+        m += ('<section><div class="wrap split"><div class="rv">%s</div>'
+              '<div class="rv"><span class="kicker">Hình ảnh công trình</span><h2>%s</h2>'
+              '<p>Quy mô, vật liệu và giải pháp thi công được xác định sau khi khảo sát nhu cầu thực tế.</p>'
+              '<h3>Hạng mục xây dựng</h3><ul class="checks">%s</ul>'
+              '<a class="btn btn-gold" href="@/lien-he.html">Liên hệ tư vấn</a></div></div></section>'
+              '<div class="wrap"><a class="btn btn-line" href="@/du-an.html">← Xem các loại hình</a></div>'
+              % (project_art(p), esc(p["type"]), "".join("<li>%s</li>" % x for x in p["items"]))) + cta_band()
+        page("du-an/%s.html" % p["slug"], "%s | Công trình tiêu biểu | Lộc Minh Anh" % p["type"],
+             "Hình ảnh công trình %s." % p["type"].lower(), m, active="du-an.html")
 
 # ---------------------------------------------------------------- QUY TRÌNH
 def build_process():
@@ -441,11 +440,11 @@ def build_process():
              '<article class="card rv"><div class="ico">%s</div><h3>Chất lượng</h3><p>Thi công đúng bản vẽ, vật tư đúng chủng loại trong phụ lục, nghiệm thu từng công đoạn có biên bản.</p></article>'
              '<article class="card rv"><div class="ico">%s</div><h3>Bảo hành</h3><p>Thời hạn bảo hành %s, tiếp nhận yêu cầu qua hotline và Zalo, khắc phục theo phương án thống nhất.</p></article></div></div></section>'
              % (IC["calendar"], IC["eye"], IC["shield"], PH("số tháng")))
-    faq = [("Chi phí phát sinh được xử lý thế nào?", "Hạng mục ngoài hợp đồng được lập báo giá bổ sung và chỉ thi công khi chủ đầu tư xác nhận bằng văn bản."),
+    faq = [("Chi phí phát sinh được xử lý như thế nào?", "Hạng mục ngoài hợp đồng được lập báo giá bổ sung và chỉ thi công khi chủ đầu tư xác nhận bằng văn bản."),
            ("Tôi có theo dõi được tiến độ không?", "Có. Chúng tôi gửi báo cáo định kỳ kèm ảnh, mời chủ đầu tư tham gia nghiệm thu từng giai đoạn."),
            ("Việc thanh toán chia thế nào?", "Chia theo các giai đoạn nghiệm thu ghi trong hợp đồng. Tỷ lệ cụ thể được thỏa thuận theo từng dự án."),
            ("Bảo hành gồm những gì?", "Theo hợp đồng và quy định pháp luật về bảo hành công trình xây dựng. Phạm vi và thời hạn được ghi rõ khi ký."),
-           ("Tôi đã có bản vẽ, LMA có thi công được không?", "Được. Chúng tôi nhận thi công theo bản vẽ có sẵn, hoặc rà soát bản vẽ và lập dự toán trước khi ký hợp đồng.")]
+           ("Tôi đã có bản vẽ; Lộc Minh Anh có nhận thi công không?", "Được. Chúng tôi nhận thi công theo bản vẽ có sẵn, hoặc rà soát bản vẽ và lập dự toán trước khi ký hợp đồng.")]
     main += ('<section><div class="wrap" style="max-width:820px"><div class="sec-head rv"><span class="kicker">Câu hỏi thường gặp</span><h2>Những điều chủ đầu tư hay hỏi</h2></div>%s</div></section>'
              % "".join("<details class='rv'><summary>%s</summary><p>%s</p></details>" % q for q in faq)) + cta_band()
     page("quy-trinh.html", "Quy trình làm việc và cam kết | Lộc Minh Anh",
@@ -462,7 +461,7 @@ def build_blog():
         art = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": p["title"], "description": p["desc"], "inLanguage": "vi",
                           "datePublished": date.fromtimestamp((ROOT / ("tin-tuc/%s.html" % p["slug"])).stat().st_mtime).isoformat(),
                           "dateModified": date.fromtimestamp((ROOT / ("tin-tuc/%s.html" % p["slug"])).stat().st_mtime).isoformat(), "author": {"@type": "Organization", "name": "Lộc Minh Anh"},
-                          "publisher": {"@type": "Organization", "name": "Lộc Minh Anh", "logo": {"@type": "ImageObject", "url": BASE + "assets/img/logo-lma.png"}},
+                          "publisher": {"@type": "Organization", "name": "Lộc Minh Anh", "logo": {"@type": "ImageObject", "url": BASE + "assets/img/logo-mark.png"}},
                           "image": BASE + "assets/img/og-image.jpg", "mainEntityOfPage": BASE + "tin-tuc/%s.html" % p["slug"]}, ensure_ascii=False)
         publish_date = date.fromtimestamp((ROOT / ("tin-tuc/%s.html" % p["slug"])).stat().st_mtime)
         m = hero_page(p["title"], '<time datetime="%s">%s</time> · %s · %s' % (publish_date.isoformat(), publish_date.strftime("%d/%m/%Y"), p["tag"], p["read"]), [HOME, '<a href="@/tin-tuc.html">Tin tức</a>', "Bài viết"])
@@ -471,11 +470,11 @@ def build_blog():
 
 # ---------------------------------------------------------------- TUYỂN DỤNG
 def build_jobs():
-    main = hero_page("Tuyển dụng", "Cùng Lộc Minh Anh xây những công trình bền vững. Chúng tôi tìm người làm việc cẩn thận, có trách nhiệm và muốn phát triển nghề lâu dài.", [HOME, "Tuyển dụng"])
+    main = hero_page("Tuyển dụng", "Thông tin tuyển dụng sẽ được cập nhật khi doanh nghiệp công bố nhu cầu và kênh nhận hồ sơ chính thức.", [HOME, "Tuyển dụng"])
     main += ('<section><div class="wrap"><h2 class="sr">Môi trường làm việc</h2><div class="grid g3">'
-             '<article class="card rv"><h3>An toàn là điều kiện đầu tiên</h3><p>Trang bị bảo hộ và quy định an toàn lao động được áp dụng tại mọi công trường.</p></article>'
+             '<article class="card rv"><h3>An toàn là điều kiện đầu tiên</h3><p>An toàn lao động là nội dung cần xác định và thực hiện theo phương án của từng công trình.</p></article>'
              '<article class="card rv"><h3>Làm việc minh bạch</h3><p>Phân công rõ ràng, đánh giá theo kết quả công việc cụ thể.</p></article>'
-             '<article class="card rv"><h3>Học hỏi từ thực tế</h3><p>Làm cùng đội ngũ có kinh nghiệm, trực tiếp tham gia công trình từ thiết kế đến bàn giao.</p></article></div></div></section>')
+             '<article class="card rv"><h3>Học hỏi từ thực tế</h3><p>Các vị trí và điều kiện làm việc sẽ được công bố khi có kế hoạch tuyển dụng chính thức.</p></article></div></div></section>')
     main += ('<section class="alt"><div class="wrap"><div class="sec-head rv"><span class="kicker">Vị trí tuyển dụng</span><h2>Cơ hội làm việc</h2>'
              '<p class="note">Chưa có thông tin tuyển dụng được xác nhận. Vui lòng quay lại khi công ty công bố vị trí và kênh nhận hồ sơ chính thức.</p></div></div></section>')
     page("tuyen-dung.html", "Tuyển dụng | Lộc Minh Anh", "Thông tin tuyển dụng của Lộc Minh Anh sẽ được cập nhật khi có thông báo chính thức.", main, active="tuyen-dung.html")
@@ -484,10 +483,10 @@ def build_jobs():
 def build_contact():
     def li(ic, label, inner): return '<li><div class="ico">%s</div><div><b>%s</b>%s</div></li>' % (IC[ic], label, inner)
     info = "".join([
-        li("pin", "Địa chỉ", '<span data-lma="address">[cập nhật]</span>'),
-        li("phone", "Hotline", '<a href="@/lien-he.html" data-lma="hotline">[cập nhật]</a>'),
+        li("pin", "Địa chỉ", '<span data-lma="address">11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng, Việt Nam</span>'),
+        li("phone", "Điện thoại", '<a href="tel:0905677429" data-lma="hotline">0905 677 429</a>'),
         li("chat", "Zalo", '<a href="@/lien-he.html" data-lma="zalo">Nhắn Zalo cho Lộc Minh Anh</a>'),
-        li("mail", "Email", '<a href="@/lien-he.html" data-lma="email">[cập nhật]</a>'),
+        li("mail", "Email", '<a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a>'),
         li("clock", "Giờ làm việc", '<span data-lma="hours">[cập nhật]</span>'),
         li("fb", "Facebook", '<a href="@/lien-he.html" data-lma="facebook">Trang Facebook Lộc Minh Anh</a>')])
     form = """<form class="form" id="quote-form" novalidate>
@@ -503,11 +502,11 @@ def build_contact():
 <div id="form-msg" class="msg" role="status" tabindex="-1" hidden></div>
 <p class="note">Biểu mẫu hiện chưa có dịch vụ nhận. Để yêu cầu được tiếp nhận, vui lòng gửi email tới <a href="mailto:info@locminhanh.com">info@locminhanh.com</a>. Không gửi dữ liệu nhạy cảm qua biểu mẫu đang ở chế độ xem thử.</p>
 <button class="btn btn-gold" type="submit">Xem lại thông tin (chưa gửi)</button></form>"""
-    main = hero_page("Liên hệ và nhận báo giá", "Mô tả ngắn công trình của bạn. Lộc Minh Anh sẽ liên hệ để khảo sát và gửi báo giá chi tiết theo hạng mục.", [HOME, "Liên hệ"])
-    main += ('<section><div class="wrap split"><div class="rv"><span class="kicker">Thông tin liên hệ</span><h2>Gặp trực tiếp hoặc gọi cho chúng tôi</h2><ul class="contact-list">%s</ul>'
-             '<div class="map" id="map"><div class="ph"><span>Bản đồ nhúng: điền mapEmbed trong script.js</span></div></div></div>'
-             '<div class="rv" id="bao-gia"><span class="kicker">Báo giá và tư vấn</span><h2>Gửi yêu cầu của bạn</h2>%s</div></div></section>' % (info, form))
-    page("lien-he.html", "Liên hệ và nhận báo giá | Lộc Minh Anh", "Liên hệ Lộc Minh Anh để được tư vấn và báo giá tổng thầu xây dựng tại miền Trung. Gửi form hoặc gọi hotline, Zalo.", main, active="lien-he.html", schema=schema_org())
+    main = hero_page("Liên hệ và nhận báo giá", "Liên hệ với Lộc Minh Anh để trao đổi nhu cầu xây dựng. Gửi email hoặc gọi điện để được tư vấn.", [HOME, "Liên hệ"])
+    main += ('<section><div class="wrap split"><div class="rv"><span class="kicker">Thông tin liên hệ</span><h2>Liên hệ qua điện thoại hoặc email</h2><ul class="contact-list">%s</ul>'
+             '<div class="map" id="map"><div class="ph"><span>Bản đồ sẽ được cập nhật</span></div></div></div>'
+             '<div class="rv" id="bao-gia"><span class="kicker">Báo giá và tư vấn</span><h2>Thông tin tham khảo trước khi gửi email</h2>%s</div></div></section>' % (info, form))
+    page("lien-he.html", "Liên hệ và nhận báo giá | Lộc Minh Anh", "Liên hệ Lộc Minh Anh qua email hoặc điện thoại để được tư vấn xây dựng tại Đà Nẵng.", main, active="lien-he.html", schema=schema_org())
 
 def build_404():
     page("404.html", "Không tìm thấy trang | Lộc Minh Anh", "Trang bạn tìm không tồn tại hoặc đã được chuyển.",

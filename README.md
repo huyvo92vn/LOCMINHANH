@@ -18,12 +18,12 @@ tools/build.py        (tùy chọn) sinh lại toàn bộ HTML từ một nơi
 ```
 
 ## Việc cần làm trước khi chạy thật
-1. **Thông tin liên hệ**: email `info@locminhanh.com` đã được cung cấp. Mở `script.js` để điền các thông tin thật còn thiếu (hotline, Zalo, địa chỉ, giờ làm việc, Facebook, bản đồ). Toàn site tự cập nhật; nút gọi và Zalo chỉ chuyển sang số thật sau khi cấu hình.
+1. **Thông tin liên hệ**: email `info@locminhanh.com` do chủ dự án cung cấp. Tên pháp lý, MST `0402332326`, địa chỉ đăng ký và điện thoại `0905 677 429` lấy từ [hồ sơ thuế công khai](https://masothue.com/0402332326-cong-ty-tnhh-xay-dung-va-thuong-mai-loc-minh-anh); chủ doanh nghiệp cần xác nhận số này dùng tiếp khách, địa chỉ có tiếp khách hay không. Điền thêm Zalo, giờ làm việc, Facebook và bản đồ khi đã xác minh.
 2. **Form báo giá**: email liên hệ `info@locminhanh.com` đã được chủ dự án cung cấp. Email **không tự động là nơi nhận form**. Hiện form chỉ kiểm tra dữ liệu, không gửi đi; trang Liên hệ hiển thị hướng dẫn gửi email trực tiếp. Nếu dùng [Formspree](https://formspree.io) hoặc dịch vụ khác, cấu hình và kiểm thử URL HTTPS tại `LMA.formEndpoint`, thêm thông báo quyền riêng tư về đơn vị xử lý dữ liệu trước khi bật gửi thật.
 3. **Bản đồ**: Google Maps > Chia sẻ > Nhúng bản đồ, dán phần `src` vào `LMA.mapEmbed`.
 4. **Tên miền**: đổi `BASE` trong `tools/build.py` (và chạy lại), hoặc thay URL trong `sitemap.xml`, `robots.txt`, thẻ canonical/OG nếu dùng tên miền riêng.
-5. **Nội dung giữ chỗ** dạng `[cập nhật]`: số liệu, mã số thuế, năm thành lập, đội ngũ, dự án mẫu (`du-an/*.html`). Chỉ công bố dữ liệu thật đã được chủ dự án xác nhận. Các trang chi tiết dự án mẫu có `noindex` và không nằm trong sitemap; bỏ `noindex` khi thay bằng dự án thật. Đã bỏ lời chứng thực giả và danh sách vị trí tuyển dụng mẫu khỏi giao diện.
-6. **Schema.org** (`GeneralContractor`): thêm `telephone`, `address` đầy đủ vào JSON-LD khi có thông tin.
+5. **Hình minh họa**: sáu SVG tự tạo mô tả loại công trình có thể tư vấn, không phải ảnh công trình đã thi công. Trang chi tiết minh họa (`du-an/*.html`) có `noindex`, không nằm trong sitemap. Ảnh công đoạn thi công JPEG cần xác minh tác giả, quyền sử dụng và nguồn gốc trước khi gắn với dự án thật. Không tự đặt số dự án, chứng chỉ hoặc danh tính đội ngũ.
+6. **Schema.org** (`GeneralContractor`): tên pháp lý, MST, điện thoại, địa chỉ đăng ký và email đã được cập nhật; xác nhận quyền sử dụng số điện thoại làm kênh tư vấn trước khi triển khai rộng.
 
 ## Triển khai
 - **GitHub Pages**: sau khi repository được tạo và mã được đẩy lên, Settings > Pages > Source: `main` / `/ (root)`. Mặc định URL là `https://huyvo92vn.github.io/LOCMINHANH/` (toàn bộ đường dẫn là tương đối nên chạy được ở thư mục con); cập nhật URL cơ sở nếu dùng tên miền khác.

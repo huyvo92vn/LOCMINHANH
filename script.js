@@ -5,11 +5,11 @@
 /* >>> ĐIỀN THÔNG TIN THẬT TẠI ĐÂY – tự cập nhật mọi nơi có data-lma trên site <<<
    Để trống = giữ nguyên nhãn "[cập nhật]" và nút gọi nhanh dẫn về trang Liên hệ. */
 const LMA = {
-  hotline: "",          // ví dụ: "0905123456" (chỉ số, dùng cho tel:)
-  hotlineText: "",      // ví dụ: "0905 123 456" (hiển thị)
+  hotline: "0905677429",    // số điện thoại đăng trên hồ sơ thuế (cần chủ doanh nghiệp xác nhận trước khi dùng làm hotline)
+  hotlineText: "0905 677 429",
   zalo: "",             // số Zalo, ví dụ: "0905123456"
   email: "info@locminhanh.com", // email liên hệ do chủ dự án cung cấp
-  address: "",          // địa chỉ văn phòng
+  address: "11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng, Việt Nam", // địa chỉ đăng ký thuế; chưa xác nhận là văn phòng tiếp khách
   hours: "",            // ví dụ: "Thứ 2 – Thứ 7: 7:30 – 17:30"
   facebook: "",         // ví dụ: "https://facebook.com/ten-trang"
   mapEmbed: "",         // URL iframe từ Google Maps > Chia sẻ > Nhúng bản đồ (chỉ phần src)
@@ -65,7 +65,7 @@ const LMA = {
       let n = 0;
       cards.forEach((c) => { const show = cat === "all" || c.dataset.cat === cat; c.hidden = !show; if (show) n++; });
       $$("button", fbox).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === cat)));
-      if (count) count.textContent = n + " dự án";
+      if (count) count.textContent = n + " loại hình";
     };
     fbox.addEventListener("click", (e) => { const b = e.target.closest("button[data-filter]"); if (b) apply(b.dataset.filter); });
     const h = location.hash.replace("#", "");
