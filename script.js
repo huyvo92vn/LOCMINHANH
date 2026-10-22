@@ -8,12 +8,12 @@ const LMA = {
   hotline: "",          // ví dụ: "0905123456" (chỉ số, dùng cho tel:)
   hotlineText: "",      // ví dụ: "0905 123 456" (hiển thị)
   zalo: "",             // số Zalo, ví dụ: "0905123456"
-  email: "",            // ví dụ: "info@locminhanh.vn"
+  email: "info@locminhanh.com", // email liên hệ do chủ dự án cung cấp
   address: "",          // địa chỉ văn phòng
   hours: "",            // ví dụ: "Thứ 2 – Thứ 7: 7:30 – 17:30"
   facebook: "",         // ví dụ: "https://facebook.com/ten-trang"
   mapEmbed: "",         // URL iframe từ Google Maps > Chia sẻ > Nhúng bản đồ (chỉ phần src)
-  formEndpoint: ""      // ví dụ: "https://formspree.io/f/xxxxxxxx" (xem README)
+  formEndpoint: ""      // Nếu có dịch vụ nhận form đã kiểm thử, điền URL HTTPS (xem README)
 };
 
 (function () {
@@ -35,9 +35,15 @@ const LMA = {
   /* ---- 2. Menu di động ---- */
   const btn = $(".menu-btn"), nav = $("#nav");
   if (btn && nav) {
-    const toggle = (open) => { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", String(open)); };
+    const toggle = (open) => {
+      nav.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Đóng menu" : "Mở menu");
+    };
     btn.addEventListener("click", () => toggle(!nav.classList.contains("open")));
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") { toggle(false); btn.focus(); } });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("open")) { toggle(false); btn.focus(); }
+    });
     nav.addEventListener("click", (e) => { if (e.target.closest("a")) toggle(false); });
   }
 
@@ -84,7 +90,17 @@ const LMA = {
   /* ---- 6. Bản đồ nhúng ---- */
   const map = $("#map");
   if (map && LMA.mapEmbed) {
-    map.innerHTML = '<iframe title="Bản đồ văn phòng Lộc Minh Anh" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="' + LMA.mapEmbed.replace(/"/g, "&quot;") + '"></iframe>';
+    try {
+      const url = new URL(LMA.mapEmbed);
+      if (url.protocol === "https:" && ["www.google.com", "maps.google.com"].includes(url.hostname) && url.pathname.includes("/maps/embed")) {
+        const frame = document.createElement("iframe");
+        frame.title = "Bản đồ văn phòng Lộc Minh Anh";
+        frame.loading = "lazy";
+        frame.referrerPolicy = "no-referrer-when-downgrade";
+        frame.src = url.href;
+        map.replaceChildren(frame);
+      }
+    } catch (_) { /* Keep the map placeholder until a valid embed URL is supplied. */ }
   }
 
   /* ---- 7. Form báo giá: kiểm tra dữ liệu + gửi ---- */
@@ -119,7 +135,7 @@ const LMA = {
       const show = (cls, text) => { msg.className = "msg " + cls; msg.textContent = text; msg.hidden = false; msg.focus(); };
       if (!LMA.formEndpoint) {
         console.warn("[LMA] Chưa cấu hình LMA.formEndpoint trong script.js – dữ liệu chưa được gửi đi.");
-        show("info", "Chế độ xem thử: dữ liệu hợp lệ nhưng CHƯA được gửi đi vì biểu mẫu chưa gắn dịch vụ nhận (xem README). Vui lòng gọi hotline để được tư vấn ngay.");
+        show("info", "Dữ liệu chưa được gửi: biểu mẫu đang chờ cấu hình dịch vụ nhận. Vui lòng gửi yêu cầu qua email info@locminhanh.com.");
         return;
       }
       const submit = $("button[type=submit]", form); submit.disabled = true;

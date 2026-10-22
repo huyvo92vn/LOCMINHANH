@@ -14,11 +14,7 @@
   /* Font & kích thước */
   --font:'Be Vietnam Pro',Arial,sans-serif;
   --w:1160px; --hh:68px; --r:12px;
-  color-scheme:light dark;
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0B1220;--surface:#111A2C;--alt:#0F1829;--text:#E6ECF7;--muted:#A9B7CC;--line:#243553;
-    --head:#fff;--link:#8DB4FF;--kick:#6CC4D1;--ring:#8DB4FF;--danger:#FF9C93;--ok:#6CE9A6;--shadow:0 10px 30px rgba(0,0,0,.35)}
+  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 16px);-webkit-text-size-adjust:100%}
@@ -108,7 +104,6 @@ section{padding:clamp(52px,8vw,96px) 0}
 .num{font-weight:800;font-size:.85rem;letter-spacing:.12em;color:var(--kick)}
 .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--alt);color:var(--blue);margin-bottom:16px;border-bottom:3px solid var(--gold)}
 .ico svg{width:24px;height:24px}
-@media (prefers-color-scheme:dark){.ico{color:var(--link)}}
 .checks{list-style:none;padding:0}
 .checks li{position:relative;padding-left:30px;margin-bottom:.55em}
 .checks li::before{content:"";position:absolute;left:2px;top:.5em;width:14px;height:8px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}

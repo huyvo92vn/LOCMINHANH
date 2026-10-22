@@ -3,11 +3,12 @@
 Chạy:  python3 tools/build.py   (từ thư mục gốc của repo)
 Không bắt buộc: site đã được sinh sẵn, chỉ chạy lại nếu muốn sửa nội dung/header/footer tại một chỗ."""
 import os, json, html
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://huyvo92vn.github.io/LOCMINHANH/"   # đổi khi dùng tên miền riêng
-TODAY = "2026-10-19"
+TODAY = date.today().isoformat()
 SLOGAN = "Vững bền kiến tạo tương lai"
 esc = html.escape
 
@@ -124,12 +125,6 @@ PHOTOS = [  # (tệp, rộng, cao, chú thích)
  ("thep-khu-do-thi", 1000, 751, "Gia công thép nền công trình"),
 ]
 
-TESTI = [
- ("Báo giá chia theo từng hạng mục nên gia đình tôi dễ so sánh và theo dõi chi phí trong suốt quá trình xây.", "[Tên khách hàng]", "Chủ nhà, [địa điểm]"),
- ("Mỗi giai đoạn đều có biên bản nghiệm thu và ảnh cập nhật, tôi không phải đến công trường liên tục vẫn nắm được tiến độ.", "[Tên khách hàng]", "Chủ đầu tư, [loại công trình]"),
- ("Công trình bàn giao đúng mốc đã ghi trong hợp đồng, những điểm còn tồn đọng được xử lý theo đúng thời hạn đã hẹn.", "[Tên khách hàng]", "Giám đốc, [tên doanh nghiệp]"),
-]
-
 POSTS = [
  dict(slug="bao-gia-xay-nha-tron-goi-gom-nhung-gi", title="Báo giá xây nhà trọn gói gồm những gì?",
   desc="Cách đọc bản báo giá xây nhà trọn gói: hạng mục thường được tính, hạng mục hay nằm ngoài báo giá và những câu hỏi cần làm rõ trước khi ký hợp đồng.",
@@ -206,6 +201,7 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
     url = BASE + file.replace("index.html", "")
     nav = "".join('<li><a href="@/%s"%s>%s</a></li>' % (h, ' aria-current="page"' if h == active else "", t) for t, h in NAV)
     ld = '<script type="application/ld+json">%s</script>\n' % schema if schema else ""
+    robots_meta = '<meta name="robots" content="noindex,follow">\n' if file.startswith("du-an/") else ""
     lbx = ('<dialog class="lb" id="lb" aria-label="Xem ảnh phóng to"><figure><button class="x" type="button" aria-label="Đóng">×</button>'
            '<button class="pv" type="button" aria-label="Ảnh trước">‹</button><img alt="" src=""><figcaption></figcaption>'
            '<button class="nx" type="button" aria-label="Ảnh sau">›</button></figure></dialog>') if lightbox else ""
@@ -217,7 +213,7 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
 <meta name="theme-color" content="#0E2F7A">
-<link rel="canonical" href="%(url)s">
+%(robots)s<link rel="canonical" href="%(url)s">
 <meta property="og:type" content="%(og)s"><meta property="og:locale" content="vi_VN"><meta property="og:site_name" content="Lộc Minh Anh">
 <meta property="og:title" content="%(title)s"><meta property="og:description" content="%(desc)s">
 <meta property="og:url" content="%(url)s"><meta property="og:image" content="%(base)sassets/img/og-image.jpg">
@@ -265,7 +261,7 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 <script src="@/script.js" defer></script>
 </body>
 </html>
-""" % dict(title=esc(title), desc=esc(desc, quote=True), url=url, og=og_type, base=BASE, ld=ld, nav=nav, menu=IC["menu"],
+""" % dict(title=esc(title), desc=esc(desc, quote=True), url=url, og=og_type, base=BASE, ld=ld, robots=robots_meta, nav=nav, menu=IC["menu"],
            main=main, slogan=SLOGAN, phone=IC["phone"], lbx=lbx)
     out = out.replace("@/", R)
     p = ROOT / file
@@ -348,9 +344,8 @@ def build_home():
     whys = ('<section id="ly-do"><div class="wrap"><div class="sec-head rv"><span class="kicker">Vì sao chọn LMA</span><h2>Sáu cam kết chúng tôi theo đuổi</h2></div><div class="grid g3">%s</div></div></section>'
             % "".join('<article class="card rv"><div class="ico">%s</div><h3>%s</h3><p>%s</p></article>' % (IC[i], t, d) for i, t, d in why))
 
-    tes = ('<section class="alt"><div class="wrap"><div class="sec-head rv"><span class="kicker">Khách hàng nói gì</span><h2>Phản hồi từ chủ đầu tư</h2>'
-           '<p class="note">Nội dung mẫu, thay bằng phản hồi thật của khách hàng.</p></div><div class="grid g3">%s</div></div></section>'
-           % "".join('<figure class="card quote rv" style="margin:0"><blockquote>%s</blockquote><figcaption><cite>%s</cite><span class="meta-line">%s</span><span class="sample">Nội dung mẫu, thay bằng phản hồi thật</span></figcaption></figure>' % t for t in TESTI))
+    # Never publish invented client quotations. Add verified, consented feedback here later.
+    tes = ''
 
     page("index.html", "Lộc Minh Anh – Tổng thầu xây dựng miền Trung | Vững bền kiến tạo tương lai",
          "Lộc Minh Anh nhận tổng thầu thiết kế – thi công trọn gói, xây dựng dân dụng và công nghiệp tại miền Trung. Một đầu mối, tiến độ và chi phí minh bạch. Nhận tư vấn dự án.",
@@ -465,10 +460,12 @@ def build_blog():
     page("tin-tuc.html", "Tin tức và kiến thức xây dựng | Lộc Minh Anh", "Bài viết hữu ích về báo giá xây nhà trọn gói, thủ tục xin phép xây dựng và cách chọn nhà thầu từ Lộc Minh Anh.", main, active="tin-tuc.html")
     for p in POSTS:
         art = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": p["title"], "description": p["desc"], "inLanguage": "vi",
-                          "datePublished": TODAY, "dateModified": TODAY, "author": {"@type": "Organization", "name": "Lộc Minh Anh"},
+                          "datePublished": date.fromtimestamp((ROOT / ("tin-tuc/%s.html" % p["slug"])).stat().st_mtime).isoformat(),
+                          "dateModified": date.fromtimestamp((ROOT / ("tin-tuc/%s.html" % p["slug"])).stat().st_mtime).isoformat(), "author": {"@type": "Organization", "name": "Lộc Minh Anh"},
                           "publisher": {"@type": "Organization", "name": "Lộc Minh Anh", "logo": {"@type": "ImageObject", "url": BASE + "assets/img/logo-lma.png"}},
                           "image": BASE + "assets/img/og-image.jpg", "mainEntityOfPage": BASE + "tin-tuc/%s.html" % p["slug"]}, ensure_ascii=False)
-        m = hero_page(p["title"], '<time datetime="%s">19/10/2026</time> · %s · %s' % (TODAY, p["tag"], p["read"]), [HOME, '<a href="@/tin-tuc.html">Tin tức</a>', "Bài viết"])
+        publish_date = date.fromtimestamp((ROOT / ("tin-tuc/%s.html" % p["slug"])).stat().st_mtime)
+        m = hero_page(p["title"], '<time datetime="%s">%s</time> · %s · %s' % (publish_date.isoformat(), publish_date.strftime("%d/%m/%Y"), p["tag"], p["read"]), [HOME, '<a href="@/tin-tuc.html">Tin tức</a>', "Bài viết"])
         m += '<section><div class="wrap"><article class="article">%s<div class="btns"><a class="btn btn-gold" href="@/lien-he.html#bao-gia">Nhận tư vấn dự án</a><a class="btn btn-line" href="@/tin-tuc.html">← Bài viết khác</a></div></article></div></section>' % p["body"]
         page("tin-tuc/%s.html" % p["slug"], "%s | Lộc Minh Anh" % p["title"], p["desc"], m, active="tin-tuc.html", schema=art, og_type="article")
 
@@ -480,10 +477,8 @@ def build_jobs():
              '<article class="card rv"><h3>Làm việc minh bạch</h3><p>Phân công rõ ràng, đánh giá theo kết quả công việc cụ thể.</p></article>'
              '<article class="card rv"><h3>Học hỏi từ thực tế</h3><p>Làm cùng đội ngũ có kinh nghiệm, trực tiếp tham gia công trình từ thiết kế đến bàn giao.</p></article></div></div></section>')
     main += ('<section class="alt"><div class="wrap"><div class="sec-head rv"><span class="kicker">Vị trí tuyển dụng</span><h2>Cơ hội làm việc</h2>'
-             '<p class="note">Danh sách vị trí mẫu. Cập nhật theo nhu cầu thực tế, kèm mức thu nhập và địa điểm: %s.</p></div><div class="jobs">%s</div>'
-             '<p style="margin-top:28px">Gửi hồ sơ và vị trí ứng tuyển về email <a href="@/lien-he.html" data-lma="email">[cập nhật]</a> hoặc liên hệ hotline <a href="@/lien-he.html" data-lma="hotline">[cập nhật]</a>.</p></div></section>'
-             % (PH("cập nhật", ), "".join('<article class="card rv"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center"><div><h3>%s</h3><p style="margin:0">%s</p></div><a class="btn btn-line btn-sm" href="@/lien-he.html#bao-gia">Ứng tuyển</a></div></article>' % j for j in JOBS)))
-    page("tuyen-dung.html", "Tuyển dụng | Lộc Minh Anh", "Cơ hội việc làm tại Lộc Minh Anh: chỉ huy trưởng, kỹ sư giám sát, dự toán, thiết kế kiến trúc – kết cấu. Gửi hồ sơ ứng tuyển.", main, active="tuyen-dung.html")
+             '<p class="note">Chưa có thông tin tuyển dụng được xác nhận. Vui lòng quay lại khi công ty công bố vị trí và kênh nhận hồ sơ chính thức.</p></div></div></section>')
+    page("tuyen-dung.html", "Tuyển dụng | Lộc Minh Anh", "Thông tin tuyển dụng của Lộc Minh Anh sẽ được cập nhật khi có thông báo chính thức.", main, active="tuyen-dung.html")
 
 # ---------------------------------------------------------------- LIÊN HỆ
 def build_contact():
@@ -506,7 +501,8 @@ def build_contact():
 <div class="hp" aria-hidden="true"><label>Không điền <input name="website" tabindex="-1" autocomplete="off"></label></div>
 <div><label class="chk" for="f-consent"><input id="f-consent" name="consent" type="checkbox" aria-describedby="e-consent"><span>Tôi đồng ý để Lộc Minh Anh liên hệ qua điện thoại hoặc Zalo về yêu cầu này. <span class="req" aria-hidden="true">*</span></span></label><p class="err" id="e-consent" role="alert"></p></div>
 <div id="form-msg" class="msg" role="status" tabindex="-1" hidden></div>
-<button class="btn btn-gold" type="submit">Gửi yêu cầu báo giá</button></form>"""
+<p class="note">Biểu mẫu hiện chưa có dịch vụ nhận. Để yêu cầu được tiếp nhận, vui lòng gửi email tới <a href="mailto:info@locminhanh.com">info@locminhanh.com</a>. Không gửi dữ liệu nhạy cảm qua biểu mẫu đang ở chế độ xem thử.</p>
+<button class="btn btn-gold" type="submit">Xem lại thông tin (chưa gửi)</button></form>"""
     main = hero_page("Liên hệ và nhận báo giá", "Mô tả ngắn công trình của bạn. Lộc Minh Anh sẽ liên hệ để khảo sát và gửi báo giá chi tiết theo hạng mục.", [HOME, "Liên hệ"])
     main += ('<section><div class="wrap split"><div class="rv"><span class="kicker">Thông tin liên hệ</span><h2>Gặp trực tiếp hoặc gọi cho chúng tôi</h2><ul class="contact-list">%s</ul>'
              '<div class="map" id="map"><div class="ph"><span>Bản đồ nhúng: điền mapEmbed trong script.js</span></div></div></div>'
@@ -519,13 +515,14 @@ def build_404():
 
 def build_seo():
     urls = ["", "gioi-thieu.html", "dich-vu.html", "du-an.html", "quy-trinh.html", "tin-tuc.html", "tuyen-dung.html", "lien-he.html"] \
-        + ["du-an/%s.html" % p["slug"] for p in PROJECTS] + ["tin-tuc/%s.html" % p["slug"] for p in POSTS]
+        + ["tin-tuc/%s.html" % p["slug"] for p in POSTS]  # exclude sample project detail pages
     x = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
-        x += "  <url><loc>%s%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (BASE, u, TODAY, "1.0" if u == "" else "0.7")
+        lastmod = date.fromtimestamp((ROOT / u).stat().st_mtime).isoformat() if u and (ROOT / u).is_file() else TODAY
+        x += "  <url><loc>%s%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (BASE, u, lastmod, "1.0" if u == "" else "0.7")
     (ROOT / "sitemap.xml").write_text(x + "</urlset>\n", encoding="utf-8")
     (ROOT / "robots.txt").write_text("User-agent: *\nAllow: /\n\nSitemap: %ssitemap.xml\n" % BASE, encoding="utf-8")
 
 if __name__ == "__main__":
     build_home(); build_about(); build_services(); build_projects(); build_process(); build_blog(); build_jobs(); build_contact(); build_404(); build_seo()
-    print("Đã sinh", len(list(ROOT.rglob("*.html"))), "trang HTML")
+    print("Generated", len(list(ROOT.rglob("*.html"))), "HTML pages")
