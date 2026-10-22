@@ -321,7 +321,7 @@ def build_home():
 <p class="lead">Chúng tôi không chỉ thi công. Lộc Minh Anh điều phối thiết kế, vật tư, nhân lực và an toàn để chủ đầu tư yên tâm với một hợp đồng và một đội ngũ chịu trách nhiệm.</p>
 <ul class="checks"><li>Tầm nhìn: trở thành nhà tổng thầu đáng tin cậy của khách hàng miền Trung.</li><li>Sứ mệnh: kiến tạo công trình an toàn, đúng tiến độ, bền vững theo thời gian.</li><li>Giá trị cốt lõi: Uy tín · Chất lượng · Đúng tiến độ · An toàn · Đồng hành lâu dài.</li></ul>
 <a class="btn btn-line" href="@/gioi-thieu.html">Tìm hiểu về LMA</a></div>
-<figure class="photo rv" style="margin:0"><img src="@/assets/img/types/nha-pho.jpg" width="1200" height="900" loading="lazy" alt="Nhà ở hiện đại"></figure>
+<figure class="photo rv" style="margin:0"><img src="@/assets/img/site/ky-su-trao-doi-ban-ve.jpg" width="1200" height="900" loading="lazy" alt="Kỹ sư trao đổi bản vẽ tại công trường"></figure>
 </div></section>"""
 
     svc = ('<section class="alt" id="dich-vu"><div class="wrap"><div class="sec-head rv"><span class="kicker">Dịch vụ nổi bật</span><h2>Từ ý tưởng đến bàn giao</h2>'
