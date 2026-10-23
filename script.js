@@ -13,8 +13,9 @@ const LMA = {
   hours: "Hỗ trợ 24/7",
   facebook: "https://www.facebook.com/nguyen.khanh.71",
   mapEmbed: "",         // để trống: trang Liên hệ dùng iframe Google Maps dựng sẵn
-  formEndpoint: "https://formsubmit.co/ajax/info@locminhanh.com", // FormSubmit gửi email tới info@locminhanh.com
-  formFallback: "https://formsubmit.co/info@locminhanh.com"       // action dự phòng khi JavaScript không chạy
+  formEndpoint: "https://formsubmit.co/ajax/quockhanh2204@gmail.com", // FormSubmit: hộp thư nhận chính
+  formCc: "info@locminhanh.com",        // nhận thêm một bản sao tới hộp thư công ty
+  formFallback: "https://formsubmit.co/quockhanh2204@gmail.com"       // action dự phòng khi JavaScript không chạy
 };
 
 (function () {
@@ -110,7 +111,7 @@ const LMA = {
     const msg = $("#form-msg");
     form.noValidate = true;
     // Tự bật chế độ gửi nếu trang có endpoint nhưng bản script.js đang chạy bị cũ.
-    LMA.formEndpoint = LMA.formEndpoint || "https://formsubmit.co/ajax/info@locminhanh.com";
+    LMA.formEndpoint = LMA.formEndpoint || "https://formsubmit.co/ajax/quockhanh2204@gmail.com";
     // Số điện thoại Việt Nam: di động 03/05/07/08/09 (10 số) hoặc cố định 02x (11 số), cho phép +84
     const phoneRe = /^(?:\+84|0)(?:(?:3|5|7|8|9)\d{8}|2\d{9})$/;
     const rules = {
@@ -153,6 +154,7 @@ const LMA = {
       submit.disabled = true; submit.textContent = "Đang gửi…";
       const payload = new FormData(form);
       payload.delete("consent");
+      payload.append("_cc", LMA.formCc || "");
       payload.append("Đồng ý liên hệ", "Có");
       payload.append("Nguồn", "Biểu mẫu liên hệ website");
       let sent = false, activation = false;
