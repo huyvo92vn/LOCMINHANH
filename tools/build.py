@@ -2,14 +2,23 @@
 """Sinh toàn bộ các trang HTML tĩnh của website Lộc Minh Anh.
 Chạy:  python3 tools/build.py   (từ thư mục gốc của repo)
 Không bắt buộc: site đã được sinh sẵn, chỉ chạy lại nếu muốn sửa nội dung/header/footer tại một chỗ."""
-import os, json, html
+import os, json, html, hashlib
 from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = "https://huyvo92vn.github.io/LOCMINHANH/"   # đổi khi dùng tên miền riêng
+BASE = "https://locminhanh.com/"   # tên miền chính thức của website
 TODAY = date.today().isoformat()
 SLOGAN = "Vững bền kiến tạo tương lai"
+
+def _stamp(*names):
+    """Chuỗi phiên bản cho CSS/JS để máy chủ và trình duyệt không dùng lại bản cũ."""
+    h = hashlib.md5()
+    for n in names:
+        h.update((ROOT / n).read_bytes())
+    return h.hexdigest()[:10]
+
+STAMP = _stamp("style.css", "script.js")
 esc = html.escape
 
 # ---------------------------------------------------------------- biểu tượng (SVG nét mảnh)
@@ -222,7 +231,7 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 <link rel="icon" type="image/png" href="@/assets/img/favicon.png"><link rel="apple-touch-icon" href="@/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&amp;display=swap">
-<link rel="stylesheet" href="@/style.css">
+<link rel="stylesheet" href="@/style.css?v=%(stamp)s">
 <script>document.documentElement.classList.add('js')</script>
 %(ld)s</head>
 <body>
@@ -259,11 +268,11 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 <a class="call" href="@/lien-he.html" data-lma="hotline" data-text="no" aria-label="Gọi hotline Lộc Minh Anh">%(phone)s</a>
 </div>
 %(lbx)s
-<script src="@/script.js" defer></script>
+<script src="@/script.js?v=%(stamp)s" defer></script>
 </body>
 </html>
 """ % dict(title=esc(title), desc=esc(desc, quote=True), url=url, og=og_type, base=BASE, ld=ld, robots=robots_meta, nav=nav, menu=IC["menu"],
-           main=main, slogan=SLOGAN, phone=IC["phone"], lbx=lbx)
+           main=main, slogan=SLOGAN, phone=IC["phone"], lbx=lbx, stamp=STAMP)
     out = out.replace("@/", R)
     p = ROOT / file
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -493,7 +502,7 @@ def build_contact():
 <input type="hidden" name="_subject" value="Yêu cầu tư vấn mới từ website Lộc Minh Anh">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://huyvo92vn.github.io/LOCMINHANH/lien-he.html?sent=1">
+<input type="hidden" name="_next" value="https://locminhanh.com/lien-he.html?sent=1">
 <div class="row2"><div><label for="f-name">Họ và tên <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="Họ và tên" autocomplete="name" required aria-describedby="e-name"><p class="err" id="e-name" role="alert"></p></div>
 <div><label for="f-phone">Số điện thoại <span class="req" aria-hidden="true">*</span></label><input id="f-phone" name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" placeholder="0905 123 456" required aria-describedby="e-phone"><p class="err" id="e-phone" role="alert"></p></div></div>
 <div class="row2"><div><label for="f-email">Email (không bắt buộc)</label><input id="f-email" name="Email" type="email" inputmode="email" autocomplete="email" aria-describedby="e-email"><p class="err" id="e-email" role="alert"></p></div>

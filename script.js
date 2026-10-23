@@ -109,6 +109,8 @@ const LMA = {
   if (form) {
     const msg = $("#form-msg");
     form.noValidate = true;
+    // Tự bật chế độ gửi nếu trang có endpoint nhưng bản script.js đang chạy bị cũ.
+    LMA.formEndpoint = LMA.formEndpoint || "https://formsubmit.co/ajax/info@locminhanh.com";
     // Số điện thoại Việt Nam: di động 03/05/07/08/09 (10 số) hoặc cố định 02x (11 số), cho phép +84
     const phoneRe = /^(?:\+84|0)(?:(?:3|5|7|8|9)\d{8}|2\d{9})$/;
     const rules = {
