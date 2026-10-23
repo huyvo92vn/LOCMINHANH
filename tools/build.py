@@ -291,7 +291,7 @@ def svc_card(s):
             % (IC[s["ic"]], s["name"], s["short"], s["id"], esc(s["name"])))
 
 def project_art(p):
-    return ('<div class="concept-art"><img src="@/assets/img/types/%s.jpg" width="1200" height="900" loading="lazy" '
+    return ('<div class="concept-art"><img src="@/assets/img/projects/%s.jpg" width="1200" height="900" loading="lazy" '
             'alt="Ảnh công trình %s"></div>' % (p["art"], esc(p["type"], True)))
 
 def proj_card(p, link="@/du-an/%s.html"):
@@ -367,7 +367,7 @@ def build_about():
 <p>Lộc Minh Anh theo đuổi một cách làm đơn giản: chủ đầu tư chỉ cần làm việc với một đầu mối, hiểu rõ mình đang trả tiền cho hạng mục nào, và biết công trình đang ở giai đoạn nào.</p>
 <p>Từ thiết kế, dự toán, thi công đến bảo hành, mỗi bước đều có hồ sơ, biên bản và người chịu trách nhiệm cụ thể.</p>
 </div>
-<figure class="photo rv" style="margin:0"><img src="@/assets/img/types/van-phong.jpg" width="1200" height="900" loading="lazy" alt="Công trình văn phòng hiện đại"></figure></div></section>"""
+<figure class="photo rv" style="margin:0"><img src="@/assets/img/projects/van-phong.jpg" width="1200" height="900" loading="lazy" alt="Công trình văn phòng hiện đại"></figure></div></section>"""
     main += """<section class="alt"><div class="wrap"><div class="grid g2">
 <article class="card rv"><span class="num">TẦM NHÌN</span><h3>Nhà tổng thầu đáng tin cậy</h3><p>Trở thành nhà tổng thầu xây dựng được khách hàng miền Trung tin tưởng nhờ những công trình bàn giao đúng cam kết.</p></article>
 <article class="card rv"><span class="num">SỨ MỆNH</span><h3>Công trình bền theo thời gian</h3><p>Kiến tạo những công trình an toàn, đúng tiến độ, bền vững theo thời gian và minh bạch chi phí cho mọi khách hàng.</p></article></div></div></section>"""
