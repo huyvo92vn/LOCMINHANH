@@ -10,8 +10,8 @@ const LMA = {
   zalo: "0905677429",
   email: "info@locminhanh.com", // email liên hệ do chủ dự án cung cấp
   address: "11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng, Việt Nam", // địa chỉ đăng ký thuế; chưa xác nhận là văn phòng tiếp khách
-  hours: "Thứ 2 – Thứ 7: 8:00 – 17:30",
-  facebook: "",         // điền khi có trang Facebook chính thức
+  hours: "Hỗ trợ 24/7",
+  facebook: "https://www.facebook.com/nguyen.khanh.71",
   mapEmbed: "",         // để trống: trang Liên hệ dùng iframe Google Maps dựng sẵn
   formEndpoint: "https://formsubmit.co/ajax/info@locminhanh.com", // FormSubmit gửi email tới info@locminhanh.com
   formFallback: "https://formsubmit.co/info@locminhanh.com"       // action dự phòng khi JavaScript không chạy

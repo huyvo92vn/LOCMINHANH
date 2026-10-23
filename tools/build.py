@@ -247,15 +247,15 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 <p>Địa chỉ: <span data-lma="address">11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng</span></p>
 <p>Điện thoại: <a href="tel:0905677429" data-lma="hotline">0905 677 429</a></p>
 <p>Email: <a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a></p>
-<p>Giờ làm việc: <span data-lma="hours">Thứ 2 – Thứ 7: 8:00 – 17:30</span></p></div>
+<p>Giờ làm việc: <span data-lma="hours">Hỗ trợ 24/7</span></p></div>
 <div><h2>Kết nối</h2><ul>
-<li><a href="@/lien-he.html" data-lma="facebook">Facebook Lộc Minh Anh</a></li>
-<li><a href="@/lien-he.html" data-lma="zalo">Chat Zalo</a></li>
+<li><a href="https://www.facebook.com/nguyen.khanh.71" data-lma="facebook" rel="noopener">Facebook Lộc Minh Anh</a></li>
+<li><a href="https://zalo.me/0905677429" data-lma="zalo" rel="noopener">Chat Zalo</a></li>
 <li><a href="@/lien-he.html#bao-gia">Nhận báo giá</a></li></ul></div>
 <div class="copy"><span>© 2026 Công ty TNHH Xây dựng và Thương mại Lộc Minh Anh. Bảo lưu mọi quyền.</span><span>Mã số thuế: 0402332326</span></div>
 </div></footer>
 <div class="fab" aria-label="Liên hệ nhanh">
-<a class="zalo" href="@/lien-he.html" data-lma="zalo" aria-label="Nhắn Zalo cho Lộc Minh Anh">Zalo</a>
+<a class="zalo" href="https://zalo.me/0905677429" data-lma="zalo" aria-label="Nhắn Zalo cho Lộc Minh Anh" rel="noopener">Zalo</a>
 <a class="call" href="@/lien-he.html" data-lma="hotline" data-text="no" aria-label="Gọi hotline Lộc Minh Anh">%(phone)s</a>
 </div>
 %(lbx)s
@@ -487,8 +487,8 @@ def build_contact():
         li("phone", "Điện thoại", '<a href="tel:0905677429" data-lma="hotline">0905 677 429</a>'),
         li("chat", "Zalo", '<a href="https://zalo.me/0905677429" data-lma="zalo" rel="noopener">Nhắn Zalo: 0905 677 429</a>'),
         li("mail", "Email", '<a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a>'),
-        li("clock", "Giờ làm việc", '<span data-lma="hours">Thứ 2 – Thứ 7: 8:00 – 17:30</span>'),
-        li("fb", "Facebook", '<a href="https://www.facebook.com/" data-lma="facebook" rel="noopener">Trang Facebook Lộc Minh Anh</a>')])
+        li("clock", "Giờ làm việc", '<span data-lma="hours">Hỗ trợ 24/7</span>'),
+        li("fb", "Facebook", '<a href="https://www.facebook.com/nguyen.khanh.71" data-lma="facebook" rel="noopener">Trang Facebook Lộc Minh Anh</a>')])
     form = """<form class="form" id="quote-form" action="https://formsubmit.co/info@locminhanh.com" method="POST">
 <input type="hidden" name="_subject" value="Yêu cầu tư vấn mới từ website Lộc Minh Anh">
 <input type="hidden" name="_template" value="table">
