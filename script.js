@@ -136,8 +136,7 @@ const LMA = {
       history.replaceState(null, "", location.pathname + "#bao-gia");
     }
 
-    // Mặc định trình duyệt gửi thẳng tới FormSubmit (chạy được cả khi JavaScript bị chặn).
-    if (!LMA.formEndpoint) return;
+    // Gửi bằng AJAX để báo đúng kết quả ngay trên trang (không rời trang, không báo cảm ơn giả).
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.hidden = true;
@@ -148,24 +147,35 @@ const LMA = {
       if (form.elements._honey && form.elements._honey.value) return; // bẫy spam (honeypot)
       const submit = $("button[type=submit]", form);
       const label = submit.textContent;
+      const fail = "Chưa gửi được yêu cầu. Vui lòng thử lại, hoặc gọi 0905 677 429 / nhắn Zalo để được hỗ trợ ngay.";
       submit.disabled = true; submit.textContent = "Đang gửi…";
       const payload = new FormData(form);
       payload.delete("consent");
       payload.append("Đồng ý liên hệ", "Có");
       payload.append("Nguồn", "Biểu mẫu liên hệ website");
+      let sent = false, activation = false;
       try {
         const res = await fetch(LMA.formEndpoint, { method: "POST", body: payload, headers: { Accept: "application/json" } });
-        if (!res.ok) throw new Error(res.status);
+        const data = await res.json().catch(() => null);
+        if (data && String(data.success) === "true") sent = true;
+        else if (data && /activation/i.test(data.message || "")) activation = true;
+      } catch (err) { console.warn("[LMA] Lỗi mạng khi gửi yêu cầu.", err); }
+      submit.disabled = false; submit.textContent = label;
+      if (sent) {
         form.reset();
-        show("ok", "Cảm ơn bạn. Lộc Minh Anh đã nhận được yêu cầu và sẽ liên hệ lại trong giờ làm việc.");
-      } catch (err) {
-        console.warn("[LMA] Không gửi được qua AJAX, chuyển sang gửi trực tiếp.", err);
-        submit.disabled = false; submit.textContent = label;
-        form.setAttribute("action", LMA.formFallback || form.action);
-        form.submit(); // gửi theo cách thường, FormSubmit hiện trang xác nhận
+        show("ok", "Cảm ơn bạn. Lộc Minh Anh đã nhận được yêu cầu và sẽ liên hệ lại ngay.");
         return;
       }
-      submit.disabled = false; submit.textContent = label;
+      if (activation) {
+        // Dịch vụ nhận yêu cầu chưa được kích hoạt: gửi hộp thư bằng email để không mất yêu cầu của khách.
+        const subj = "Yêu cầu tư vấn (" + (form.elements["Họ và tên"].value || "từ website") + ")";
+        const body = $$("input,select,textarea", form).filter((el) => rules[el.name] && el.name !== "consent")
+          .map((el) => el.name + ": " + (el.checked ? "Có" : el.value)).join("\n");
+        location.href = "mailto:" + LMA.email + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
+        show("info", "Hệ thống gửi tự động đang tạm gián đoạn. Vui lòng gọi 0905 677 429 hoặc gửi email tới " + LMA.email + ".");
+        return;
+      }
+      show("bad", fail);
     });
   }
 })();
