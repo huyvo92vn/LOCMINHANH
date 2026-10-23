@@ -7,13 +7,14 @@
 const LMA = {
   hotline: "0905677429",    // số điện thoại đăng trên hồ sơ thuế (cần chủ doanh nghiệp xác nhận trước khi dùng làm hotline)
   hotlineText: "0905 677 429",
-  zalo: "",             // số Zalo, ví dụ: "0905123456"
+  zalo: "0905677429",
   email: "info@locminhanh.com", // email liên hệ do chủ dự án cung cấp
   address: "11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng, Việt Nam", // địa chỉ đăng ký thuế; chưa xác nhận là văn phòng tiếp khách
-  hours: "",            // ví dụ: "Thứ 2 – Thứ 7: 7:30 – 17:30"
-  facebook: "",         // ví dụ: "https://facebook.com/ten-trang"
-  mapEmbed: "",         // URL iframe từ Google Maps > Chia sẻ > Nhúng bản đồ (chỉ phần src)
-  formEndpoint: ""      // Nếu có dịch vụ nhận form đã kiểm thử, điền URL HTTPS (xem README)
+  hours: "Thứ 2 – Thứ 7: 8:00 – 17:30",
+  facebook: "",         // điền khi có trang Facebook chính thức
+  mapEmbed: "",         // để trống: trang Liên hệ dùng iframe Google Maps dựng sẵn
+  formEndpoint: "https://formsubmit.co/ajax/info@locminhanh.com", // FormSubmit gửi email tới info@locminhanh.com
+  formFallback: "https://formsubmit.co/info@locminhanh.com"       // action dự phòng khi JavaScript không chạy
 };
 
 (function () {
@@ -107,23 +108,36 @@ const LMA = {
   const form = $("#quote-form");
   if (form) {
     const msg = $("#form-msg");
+    form.noValidate = true;
     // Số điện thoại Việt Nam: di động 03/05/07/08/09 (10 số) hoặc cố định 02x (11 số), cho phép +84
     const phoneRe = /^(?:\+84|0)(?:(?:3|5|7|8|9)\d{8}|2\d{9})$/;
     const rules = {
-      name: (v) => (v.trim().length >= 2 ? "" : "Vui lòng nhập họ và tên."),
-      phone: (v) => (phoneRe.test(v.replace(/[\s.\-()]/g, "")) ? "" : "Số điện thoại chưa đúng. Ví dụ: 0905 123 456."),
-      type: (v) => (v ? "" : "Vui lòng chọn loại công trình."),
-      area: (v) => (v === "" || (Number(v) > 0 && Number(v) < 1000000) ? "" : "Diện tích phải là số lớn hơn 0."),
+      "Họ và tên": (v) => (v.trim().length >= 2 ? "" : "Vui lòng nhập họ và tên."),
+      "Số điện thoại": (v) => (phoneRe.test(v.replace(/[\s.\-()]/g, "")) ? "" : "Số điện thoại chưa đúng. Ví dụ: 0905 123 456."),
+      Email: (v) => (v === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "" : "Email chưa đúng định dạng."),
+      "Loại công trình": (v) => (v ? "" : "Vui lòng chọn loại công trình."),
+      "Diện tích (m²)": (v) => (v === "" || (Number(v) > 0 && Number(v) < 1000000) ? "" : "Diện tích phải là số lớn hơn 0."),
       consent: (_v, el) => (el.checked ? "" : "Vui lòng đồng ý để chúng tôi liên hệ lại.")
     };
+    const errId = { "Họ và tên": "e-name", "Số điện thoại": "e-phone", Email: "e-email", "Loại công trình": "e-type", "Diện tích (m²)": "e-area", consent: "e-consent" };
     const check = (el) => {
       const rule = rules[el.name]; if (!rule) return true;
-      const m = rule(el.value, el), out = $("#e-" + el.name);
+      const m = rule(el.value, el), out = $("#" + errId[el.name]);
       el.setAttribute("aria-invalid", m ? "true" : "false");
       if (out) out.textContent = m;
       return !m;
     };
     $$("input,select,textarea", form).forEach((el) => el.addEventListener("blur", () => check(el)));
+    const show = (cls, text) => { msg.className = "msg " + cls; msg.textContent = text; msg.hidden = false; msg.focus(); };
+
+    // Quay lại từ trang cảm ơn của FormSubmit (?sent=1)
+    if (/[?&]sent=1/.test(location.search)) {
+      show("ok", "Cảm ơn bạn. Lộc Minh Anh đã nhận được yêu cầu và sẽ liên hệ lại trong giờ làm việc.");
+      history.replaceState(null, "", location.pathname + "#bao-gia");
+    }
+
+    // Mặc định trình duyệt gửi thẳng tới FormSubmit (chạy được cả khi JavaScript bị chặn).
+    if (!LMA.formEndpoint) return;
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.hidden = true;
@@ -131,22 +145,27 @@ const LMA = {
       const results = fields.map(check);
       const firstBad = fields[results.indexOf(false)];
       if (firstBad) { firstBad.focus(); return; }
-      if (form.elements.website && form.elements.website.value) return; // bẫy spam (honeypot)
-      const show = (cls, text) => { msg.className = "msg " + cls; msg.textContent = text; msg.hidden = false; msg.focus(); };
-      if (!LMA.formEndpoint) {
-        console.warn("[LMA] Chưa cấu hình LMA.formEndpoint trong script.js – dữ liệu chưa được gửi đi.");
-        show("info", "Dữ liệu chưa được gửi: biểu mẫu đang chờ cấu hình dịch vụ nhận. Vui lòng gửi yêu cầu qua email info@locminhanh.com.");
-        return;
-      }
-      const submit = $("button[type=submit]", form); submit.disabled = true;
+      if (form.elements._honey && form.elements._honey.value) return; // bẫy spam (honeypot)
+      const submit = $("button[type=submit]", form);
+      const label = submit.textContent;
+      submit.disabled = true; submit.textContent = "Đang gửi…";
+      const payload = new FormData(form);
+      payload.delete("consent");
+      payload.append("Đồng ý liên hệ", "Có");
+      payload.append("Nguồn", "Biểu mẫu liên hệ website");
       try {
-        const res = await fetch(LMA.formEndpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        const res = await fetch(LMA.formEndpoint, { method: "POST", body: payload, headers: { Accept: "application/json" } });
         if (!res.ok) throw new Error(res.status);
         form.reset();
-        show("ok", "Cảm ơn bạn. Lộc Minh Anh đã nhận được thông tin và sẽ liên hệ lại sớm nhất trong giờ làm việc.");
+        show("ok", "Cảm ơn bạn. Lộc Minh Anh đã nhận được yêu cầu và sẽ liên hệ lại trong giờ làm việc.");
       } catch (err) {
-        show("bad", "Chưa gửi được biểu mẫu. Vui lòng thử lại hoặc gọi trực tiếp hotline của chúng tôi.");
-      } finally { submit.disabled = false; }
+        console.warn("[LMA] Không gửi được qua AJAX, chuyển sang gửi trực tiếp.", err);
+        submit.disabled = false; submit.textContent = label;
+        form.setAttribute("action", LMA.formFallback || form.action);
+        form.submit(); // gửi theo cách thường, FormSubmit hiện trang xác nhận
+        return;
+      }
+      submit.disabled = false; submit.textContent = label;
     });
   }
 })();

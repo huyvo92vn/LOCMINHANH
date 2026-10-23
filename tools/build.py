@@ -247,7 +247,7 @@ def page(file, title, desc, main, active="", schema=None, og_type="website", lig
 <p>Địa chỉ: <span data-lma="address">11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng</span></p>
 <p>Điện thoại: <a href="tel:0905677429" data-lma="hotline">0905 677 429</a></p>
 <p>Email: <a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a></p>
-<p>Giờ làm việc: <span data-lma="hours">[cập nhật]</span></p></div>
+<p>Giờ làm việc: <span data-lma="hours">Thứ 2 – Thứ 7: 8:00 – 17:30</span></p></div>
 <div><h2>Kết nối</h2><ul>
 <li><a href="@/lien-he.html" data-lma="facebook">Facebook Lộc Minh Anh</a></li>
 <li><a href="@/lien-he.html" data-lma="zalo">Chat Zalo</a></li>
@@ -485,27 +485,38 @@ def build_contact():
     info = "".join([
         li("pin", "Địa chỉ", '<span data-lma="address">11 Thanh Lương 19, phường Hòa Xuân, thành phố Đà Nẵng, Việt Nam</span>'),
         li("phone", "Điện thoại", '<a href="tel:0905677429" data-lma="hotline">0905 677 429</a>'),
-        li("chat", "Zalo", '<a href="@/lien-he.html" data-lma="zalo">Nhắn Zalo cho Lộc Minh Anh</a>'),
+        li("chat", "Zalo", '<a href="https://zalo.me/0905677429" data-lma="zalo" rel="noopener">Nhắn Zalo: 0905 677 429</a>'),
         li("mail", "Email", '<a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a>'),
-        li("clock", "Giờ làm việc", '<span data-lma="hours">[cập nhật]</span>'),
-        li("fb", "Facebook", '<a href="@/lien-he.html" data-lma="facebook">Trang Facebook Lộc Minh Anh</a>')])
-    form = """<form class="form" id="quote-form" novalidate>
-<div class="row2"><div><label for="f-name">Họ và tên <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name"><p class="err" id="e-name" role="alert"></p></div>
-<div><label for="f-phone">Số điện thoại <span class="req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0905 123 456" required aria-describedby="e-phone"><p class="err" id="e-phone" role="alert"></p></div></div>
-<div class="row2"><div><label for="f-type">Loại công trình <span class="req" aria-hidden="true">*</span></label><select id="f-type" name="type" required aria-describedby="e-type"><option value="">Chọn loại công trình</option><option>Nhà phố, biệt thự, nhà ở</option><option>Văn phòng, cửa hàng, thương mại</option><option>Nhà xưởng, kho, công nghiệp</option><option>Cải tạo, sửa chữa</option><option>Khác</option></select><p class="err" id="e-type" role="alert"></p></div>
-<div><label for="f-area">Diện tích dự kiến (m²)</label><input id="f-area" name="area" type="number" inputmode="decimal" min="1" step="any" aria-describedby="e-area"><p class="err" id="e-area" role="alert"></p></div></div>
-<div class="row2"><div><label for="f-loc">Địa điểm xây dựng</label><input id="f-loc" name="location" autocomplete="address-level2" placeholder="Quận/huyện, tỉnh/thành"></div>
-<div><label for="f-budget">Ngân sách dự kiến</label><select id="f-budget" name="budget"><option value="">Chưa xác định</option><option>Dưới 1 tỷ đồng</option><option>1 – 3 tỷ đồng</option><option>3 – 5 tỷ đồng</option><option>Trên 5 tỷ đồng</option></select></div></div>
-<div><label for="f-note">Ghi chú</label><textarea id="f-note" name="note" placeholder="Mô tả ngắn nhu cầu, tiến độ mong muốn, tình trạng bản vẽ..."></textarea></div>
-<div class="hp" aria-hidden="true"><label>Không điền <input name="website" tabindex="-1" autocomplete="off"></label></div>
+        li("clock", "Giờ làm việc", '<span data-lma="hours">Thứ 2 – Thứ 7: 8:00 – 17:30</span>'),
+        li("fb", "Facebook", '<a href="https://www.facebook.com/" data-lma="facebook" rel="noopener">Trang Facebook Lộc Minh Anh</a>')])
+    form = """<form class="form" id="quote-form" action="https://formsubmit.co/info@locminhanh.com" method="POST">
+<input type="hidden" name="_subject" value="Yêu cầu tư vấn mới từ website Lộc Minh Anh">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://huyvo92vn.github.io/LOCMINHANH/lien-he.html?sent=1">
+<div class="row2"><div><label for="f-name">Họ và tên <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="Họ và tên" autocomplete="name" required aria-describedby="e-name"><p class="err" id="e-name" role="alert"></p></div>
+<div><label for="f-phone">Số điện thoại <span class="req" aria-hidden="true">*</span></label><input id="f-phone" name="Số điện thoại" type="tel" inputmode="tel" autocomplete="tel" placeholder="0905 123 456" required aria-describedby="e-phone"><p class="err" id="e-phone" role="alert"></p></div></div>
+<div class="row2"><div><label for="f-email">Email (không bắt buộc)</label><input id="f-email" name="Email" type="email" inputmode="email" autocomplete="email" aria-describedby="e-email"><p class="err" id="e-email" role="alert"></p></div>
+<div><label for="f-type">Loại công trình <span class="req" aria-hidden="true">*</span></label><select id="f-type" name="Loại công trình" required aria-describedby="e-type"><option value="">Chọn loại công trình</option><option>Nhà phố, biệt thự, nhà ở</option><option>Văn phòng, cửa hàng, thương mại</option><option>Nhà xưởng, kho, công nghiệp</option><option>Cải tạo, sửa chữa</option><option>Khác</option></select><p class="err" id="e-type" role="alert"></p></div></div>
+<div class="row2"><div><label for="f-area">Diện tích dự kiến (m²)</label><input id="f-area" name="Diện tích (m²)" type="number" inputmode="decimal" min="1" step="any" aria-describedby="e-area"><p class="err" id="e-area" role="alert"></p></div>
+<div><label for="f-loc">Địa điểm xây dựng</label><input id="f-loc" name="Địa điểm xây dựng" autocomplete="address-level2" placeholder="Quận/huyện, tỉnh/thành"></div></div>
+<div><label for="f-budget">Ngân sách dự kiến</label><select id="f-budget" name="Ngân sách dự kiến"><option value="">Chưa xác định</option><option>Dưới 1 tỷ đồng</option><option>1 – 3 tỷ đồng</option><option>3 – 5 tỷ đồng</option><option>Trên 5 tỷ đồng</option></select></div>
+<div><label for="f-note">Ghi chú</label><textarea id="f-note" name="Ghi chú" placeholder="Mô tả ngắn nhu cầu, tiến độ mong muốn, tình trạng bản vẽ..."></textarea></div>
+<div class="hp" aria-hidden="true"><label>Không điền <input name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div><label class="chk" for="f-consent"><input id="f-consent" name="consent" type="checkbox" aria-describedby="e-consent"><span>Tôi đồng ý để Lộc Minh Anh liên hệ qua điện thoại hoặc Zalo về yêu cầu này. <span class="req" aria-hidden="true">*</span></span></label><p class="err" id="e-consent" role="alert"></p></div>
 <div id="form-msg" class="msg" role="status" tabindex="-1" hidden></div>
-<p class="note">Biểu mẫu hiện chưa có dịch vụ nhận. Để yêu cầu được tiếp nhận, vui lòng gửi email tới <a href="mailto:info@locminhanh.com">info@locminhanh.com</a>. Không gửi dữ liệu nhạy cảm qua biểu mẫu đang ở chế độ xem thử.</p>
-<button class="btn btn-gold" type="submit">Xem lại thông tin (chưa gửi)</button></form>"""
+<p class="note">Thông tin bạn gửi chỉ dùng để tư vấn và liên hệ lại về yêu cầu này.</p>
+<button class="btn btn-gold" type="submit">Gửi yêu cầu tư vấn</button></form>"""
     main = hero_page("Liên hệ và nhận báo giá", "Liên hệ với Lộc Minh Anh để trao đổi nhu cầu xây dựng. Gửi email hoặc gọi điện để được tư vấn.", [HOME, "Liên hệ"])
-    main += ('<section><div class="wrap split"><div class="rv"><span class="kicker">Thông tin liên hệ</span><h2>Liên hệ qua điện thoại hoặc email</h2><ul class="contact-list">%s</ul>'
-             '<div class="map" id="map"><div class="ph"><span>Bản đồ sẽ được cập nhật</span></div></div></div>'
-             '<div class="rv" id="bao-gia"><span class="kicker">Báo giá và tư vấn</span><h2>Thông tin tham khảo trước khi gửi email</h2>%s</div></div></section>' % (info, form))
+    map_src = "https://www.google.com/maps?q=11+Thanh+L%C6%B0%C6%A1ng+19%2C+ph%C6%B0%E1%BB%9Dng+H%C3%B2a+Xu%C3%A2n%2C+%C4%90%C3%A0+N%E1%BA%B5ng%2C+Vi%E1%BB%87t+Nam&output=embed&hl=vi&z=16"
+    map_html = ('<div class="map" id="map"><iframe src="' + map_src + '" width="600" height="400" loading="lazy" '
+                'title="Bản đồ vị trí Lộc Minh Anh" style="border:0" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>'
+                '<p class="map-link"><a href="https://www.google.com/maps/search/?api=1&amp;query=11+Thanh+L%C6%B0%C6%A1ng+19%2C+ph%C6%B0%E1%BB%9Dng+H%C3%B2a+Xu%C3%A2n%2C+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank" rel="noopener">Mở bản đồ trong Google Maps</a></p></div>')
+    main += ('<section><div class="wrap split"><div class="rv"><span class="kicker">Thông tin liên hệ</span><h2>Liên hệ qua điện thoại hoặc email</h2><ul class="contact-list">'
+             + info + '</ul>'
+             + map_html +
+             '</div>'
+             '<div class="rv" id="bao-gia"><span class="kicker">Báo giá và tư vấn</span><h2>Gửi yêu cầu tư vấn</h2>' + form + '</div></div></section>')
     page("lien-he.html", "Liên hệ và nhận báo giá | Lộc Minh Anh", "Liên hệ Lộc Minh Anh qua email hoặc điện thoại để được tư vấn xây dựng tại Đà Nẵng.", main, active="lien-he.html", schema=schema_org())
 
 def build_404():
