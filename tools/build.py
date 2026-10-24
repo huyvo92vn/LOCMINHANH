@@ -498,9 +498,9 @@ def build_contact():
         li("mail", "Email", '<a href="mailto:info@locminhanh.com" data-lma="email">info@locminhanh.com</a>'),
         li("clock", "Giờ làm việc", '<span data-lma="hours">Hỗ trợ 24/7</span>'),
         li("fb", "Facebook", '<a href="https://www.facebook.com/nguyen.khanh.71" data-lma="facebook" rel="noopener">Trang Facebook Lộc Minh Anh</a>')])
-    form = """<form class="form" id="quote-form" action="https://formsubmit.co/quockhanh2204@gmail.com" method="POST">
+    form = """<form class="form" id="quote-form" action="https://formsubmit.co/info@locminhanh.com" method="POST">
 <input type="hidden" name="_subject" value="Yêu cầu tư vấn mới từ website Lộc Minh Anh">
-<input type="hidden" name="_cc" value="info@locminhanh.com">
+<input type="hidden" name="_cc" value="quockhanh2204@gmail.com">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_next" value="https://locminhanh.com/lien-he.html?sent=1">

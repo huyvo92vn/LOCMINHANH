@@ -13,9 +13,10 @@ const LMA = {
   hours: "Hỗ trợ 24/7",
   facebook: "https://www.facebook.com/nguyen.khanh.71",
   mapEmbed: "",         // để trống: trang Liên hệ dùng iframe Google Maps dựng sẵn
-  formEndpoint: "https://formsubmit.co/ajax/quockhanh2204@gmail.com", // FormSubmit: hộp thư nhận chính
-  formCc: "info@locminhanh.com",        // nhận thêm một bản sao tới hộp thư công ty
-  formFallback: "https://formsubmit.co/quockhanh2204@gmail.com"       // action dự phòng khi JavaScript không chạy
+  // Hộp thư nhận yêu cầu từ form: điền danh sách người nhận, cách nhau bằng dấu phẩy
+  formEndpoint: "https://formsubmit.co/ajax/info@locminhanh.com", // hộp thư nhận chính (đã kích hoạt)
+  formCc: "quockhanh2204@gmail.com",                              // nhận thêm bản sao
+  formFallback: "https://formsubmit.co/info@locminhanh.com"        // khi JavaScript bị chặn
 };
 
 (function () {
@@ -110,8 +111,6 @@ const LMA = {
   if (form) {
     const msg = $("#form-msg");
     form.noValidate = true;
-    // Tự bật chế độ gửi nếu trang có endpoint nhưng bản script.js đang chạy bị cũ.
-    LMA.formEndpoint = LMA.formEndpoint || "https://formsubmit.co/ajax/quockhanh2204@gmail.com";
     // Số điện thoại Việt Nam: di động 03/05/07/08/09 (10 số) hoặc cố định 02x (11 số), cho phép +84
     const phoneRe = /^(?:\+84|0)(?:(?:3|5|7|8|9)\d{8}|2\d{9})$/;
     const rules = {
@@ -139,47 +138,38 @@ const LMA = {
       history.replaceState(null, "", location.pathname + "#bao-gia");
     }
 
-    // Gửi bằng AJAX để báo đúng kết quả ngay trên trang (không rời trang, không báo cảm ơn giả).
+    // Gửi tự động (khách chỉ bấm 1 nút): dịch vụ nhận chuyển thư tới cả hai hộp thư.
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.hidden = true;
+      if (form.elements._honey && form.elements._honey.value) return; // bẫy spam (honeypot)
       const fields = $$("input,select,textarea", form).filter((el) => rules[el.name]);
       const results = fields.map(check);
       const firstBad = fields[results.indexOf(false)];
       if (firstBad) { firstBad.focus(); return; }
-      if (form.elements._honey && form.elements._honey.value) return; // bẫy spam (honeypot)
       const submit = $("button[type=submit]", form);
       const label = submit.textContent;
-      const fail = "Chưa gửi được yêu cầu. Vui lòng thử lại, hoặc gọi 0905 677 429 / nhắn Zalo để được hỗ trợ ngay.";
       submit.disabled = true; submit.textContent = "Đang gửi…";
       const payload = new FormData(form);
       payload.delete("consent");
       payload.append("_cc", LMA.formCc || "");
       payload.append("Đồng ý liên hệ", "Có");
       payload.append("Nguồn", "Biểu mẫu liên hệ website");
-      let sent = false, activation = false;
+      let ok = false, warning = "";
       try {
         const res = await fetch(LMA.formEndpoint, { method: "POST", body: payload, headers: { Accept: "application/json" } });
         const data = await res.json().catch(() => null);
-        if (data && String(data.success) === "true") sent = true;
-        else if (data && /activation/i.test(data.message || "")) activation = true;
-      } catch (err) { console.warn("[LMA] Lỗi mạng khi gửi yêu cầu.", err); }
+        ok = !!(data && String(data.success) === "true");
+        if (!ok) warning = (data && data.message) || ("HTTP " + res.status);
+      } catch (err) { warning = String(err); console.warn("[LMA] Lỗi mạng khi gửi yêu cầu.", err); }
       submit.disabled = false; submit.textContent = label;
-      if (sent) {
+      if (ok) {
         form.reset();
         show("ok", "Cảm ơn bạn. Lộc Minh Anh đã nhận được yêu cầu và sẽ liên hệ lại ngay.");
-        return;
+      } else {
+        console.warn("[LMA] Gửi yêu cầu thất bại:", warning);
+        show("bad", "Chưa gửi được yêu cầu. Vui lòng thử lại, hoặc gọi 0905 677 429 / nhắn Zalo để được hỗ trợ ngay.");
       }
-      if (activation) {
-        // Dịch vụ nhận yêu cầu chưa được kích hoạt: gửi hộp thư bằng email để không mất yêu cầu của khách.
-        const subj = "Yêu cầu tư vấn (" + (form.elements["Họ và tên"].value || "từ website") + ")";
-        const body = $$("input,select,textarea", form).filter((el) => rules[el.name] && el.name !== "consent")
-          .map((el) => el.name + ": " + (el.checked ? "Có" : el.value)).join("\n");
-        location.href = "mailto:" + LMA.email + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
-        show("info", "Hệ thống gửi tự động đang tạm gián đoạn. Vui lòng gọi 0905 677 429 hoặc gửi email tới " + LMA.email + ".");
-        return;
-      }
-      show("bad", fail);
     });
   }
 })();
