@@ -15,7 +15,7 @@ const LMA = {
   mapEmbed: "",         // để trống: trang Liên hệ dùng iframe Google Maps dựng sẵn
   // Hộp thư nhận yêu cầu từ form: điền danh sách người nhận, cách nhau bằng dấu phẩy
   formEndpoint: "https://formsubmit.co/ajax/info@locminhanh.com", // hộp thư nhận chính (đã kích hoạt)
-  formCc: "quockhanh2204@gmail.com,huyvo.kncvn@gmail.com",        // các hộp thư nhận bản sao, cách nhau bằng dấu phẩy
+  formCc: "quockhanh2204@gmail.com",                              // các hộp thư nhận bản sao, cách nhau bằng dấu phẩy
   formFallback: "https://formsubmit.co/info@locminhanh.com"        // khi JavaScript bị chặn
 };
 
